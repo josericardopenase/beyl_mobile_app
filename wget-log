@@ -1,0 +1,6 @@
+--2020-09-23 19:20:35--  https://www.youtube.com/redirect?event=video_description
+Resolviendo www.youtube.com (www.youtube.com)... 172.217.17.14, 216.58.201.142, 216.58.211.46, ...
+Conectando con www.youtube.com (www.youtube.com)[172.217.17.14]:443... conectado.
+Petición HTTP enviada, esperando respuesta... 404 Not Found
+2020-09-23 19:20:35 ERROR 404: Not Found.
+
