@@ -1,19 +1,15 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react'
 import NormalNavigation from './normalNavigation';
-import TrainerDetail from './components/trainer_search/trainerDetail';
-import TrainerPlansPage from './components/trainer_search/trainer_detail/trainerPlansPage';
 import ImageView from '../general_components/imageView';
-import Rutine from './components/training/rutine';
 import ExcersiseDetail from './components/training/excersiseDetail';
-import Diet from './components/training/diet';
 import RecipeDetail from './components/training/diet/recipeDetail';
 import ChatDetail from './components/chat/chatDetail';
 import PalleteColors from '../general_components/palleteColors';
-import { Image, Text } from 'react-native';
 import ChatTitle from './components/chat/chat_detail_components/chatTitle';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { View } from 'react-native';
+import ExcersiseVideo from './components/training/excersiseVideo'
 
 const Stack = createStackNavigator();
 
@@ -27,7 +23,7 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'Busca tu entrenador';
+      return 'Inicio';
     case 'Trainings':
       return 'Tu entrenamiento 💪';
     case 'Chat':
@@ -60,18 +56,6 @@ export default function TabNavigation() {
           headerTitle: getHeaderTitle(route),
           
       })} />
-      <Stack.Screen name="TrainerDetail" component={TrainerDetail} options={{
-        headerTransparent: true,
-        headerTitle: "",
-        cardStyle : {backgroundColor: "white"},
-        
-      }}  />
-
-    <Stack.Screen name="TrainerPlans" component={TrainerPlansPage} options={{
-        headerTransparent: true,
-        headerTitle: "",
-        
-      }}  />
       <Stack.Screen name="ImageView" component={ImageView} options={{
       headerTransparent: true,
       headerTitle: "",
@@ -84,12 +68,22 @@ export default function TabNavigation() {
       
 
     <Stack.Screen name="RutineDetail" component={ExcersiseDetail} options={{
+            headerTintColor: "white",
             headerTransparent: true,
             headerTitle: "",
             cardStyle: {backgroundColor: "white"},
     }}  />
 
+    <Stack.Screen name="ExcersiseVideo" component={ExcersiseVideo} options={{
+            headerTintColor: "white",
+            headerTransparent: true,
+            headerTitle: "",
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: "white"},
+    }}  />
+
     <Stack.Screen name="RecipeDetail" component={RecipeDetail} options={{
+            headerTintColor: "white",
             headerTransparent: true,
             headerTitle: "",
             cardStyle: {backgroundColor: "white"},

@@ -8,7 +8,7 @@ import ExcersiseDetail from '../excersiseDetail';
 import Food from './food';
 import Recipe from './recipe';
 
-export default function Launch() {
+export default function Launch({obj}) {
 
     const [enabled, setEnabled] = useState(false)
 
@@ -33,6 +33,7 @@ export default function Launch() {
         }
     })
 
+
     return (
  
             <View style={styles.container}>
@@ -41,7 +42,7 @@ export default function Launch() {
                 
                     <View style={{flexDirection: "row", alignItems: "center"}}>
                         <MaterialIcons name="food-croissant" size={60} color={ enabled ? "white" : PalleteColors.mainColor}></MaterialIcons>
-                        <Text style={styles.title}>Desayuno</Text>
+                        <Text style={styles.title}>{obj.name}</Text>
                     </View>
                     
                     <MaterialIcons name={ enabled ? "arrow-down" : "arrow-right"} size={30} color={ enabled ? "white" : PalleteColors.secondColor}></MaterialIcons>
@@ -49,14 +50,20 @@ export default function Launch() {
                 </View>
                 </TouchableOpacity>
 
+{/*                 This is when the diet group is open */}
                 {enabled ? (
                 <GeneralContainer>
-                    <Food></Food> 
-                    <Food></Food> 
-                    <Recipe></Recipe>
+                    {
+                        obj.diet_food.map((obj) => <Food key = {obj.id} obj={obj}></Food>)
+                    }
+                    {
+                        obj.diet_recipes.map((obj) => <Recipe  key = {obj.id} obj={obj}></Recipe>)
+                    }
                 </GeneralContainer>
                 )
                 : null}
+
+{/*                 This is when the diet group is open */}
 
             </View>
 

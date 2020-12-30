@@ -9,7 +9,7 @@ export default function ExcersisePuntuation({puntuation}) {
         <View style={{flexDirection: "row"}}>
             {
                 
-               [0,0,0,0,0].map((value, index) =>   <MaterialIcon name="fire" size={30} style={{marginRight: 10}} color = {index >= puntuation ? "grey" : "#ff4567"}></MaterialIcon>)
+               [0,1,2,3,4].map((value, index) =>   <MaterialIcon key={value} name="fire" size={30} style={{marginRight: 10}} color = {index >= puntuation ? "grey" : "#ff4567"}></MaterialIcon>)
                 
             }
 

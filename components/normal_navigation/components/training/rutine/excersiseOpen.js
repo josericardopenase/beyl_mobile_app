@@ -6,7 +6,7 @@ import GeneralContainer from '../../../../general_components/generalContainer'
 import PalleteColors from '../../../../general_components/palleteColors'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function ExcersiseOpen() {
+export default function ExcersiseOpen({description, id}) {
 
     const navigation = useNavigation()
 
@@ -18,8 +18,8 @@ export default function ExcersiseOpen() {
                      <MaterialIcon name="note" size={18} color={PalleteColors.secondColor} style={{marginBottom: 5}}></MaterialIcon>
                      <Text style={styles.titulo}>Anotaciones:</Text>
                 </View>   
-                <Text style={{fontFamily: "poppins-regular", color: "grey"}}>Me gustaría que lo hicieras pesado para trbajar la tensión mecánica</Text>
-                <TouchableOpacity  onPress = {()=> navigation.navigate('RutineDetail')} style={{backgroundColor: PalleteColors.secondColor, padding:15, borderRadius: 10, marginTop: 20, alignItems: "center", flexDirection: "row", justifyContent: "center"}}><MaterialIcon name="dumbbell" color="white" size={20} style={{marginRight: 10}}></MaterialIcon><Text style={{color: "white", fontFamily: "poppins-regular"}}>Explicación ejercicio</Text></TouchableOpacity>
+                <Text style={{fontFamily: "poppins-regular", color: "grey"}}>{description ? description : "Ninguna anotacion"}</Text>
+                <TouchableOpacity  onPress = {()=> navigation.navigate('RutineDetail', {id: id})} style={{backgroundColor: PalleteColors.secondColor, padding:15, borderRadius: 10, marginTop: 20, alignItems: "center", flexDirection: "row", justifyContent: "center"}}><MaterialIcon name="dumbbell" color="white" size={20} style={{marginRight: 10}}></MaterialIcon><Text style={{color: "white", fontFamily: "poppins-regular"}}>Explicación ejercicio</Text></TouchableOpacity>
             </GeneralContainer>
 
         </View>

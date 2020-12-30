@@ -20,18 +20,18 @@ export default function Food(props) {
         }
     })
 
+    console.log(props.obj)
+
     return (
         <View style = {styles.container}>
 
             <View style={{flexDirection: "row", alignItems: "center"}}>
-                
-                <Image style={styles.image} source={{uri: 'https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-525x360.jpg ' }}></Image>
 
-                <Text style={{marginLeft: 10, fontFamily: "poppins-regular", fontSize: 15}}>Arroz blanco</Text>
+                <Text style={{marginLeft: 10, fontFamily: "poppins-regular", fontSize: 15}}>{props.obj.food.name}</Text>
 
             </View>
 
-            <Text>200gr</Text>
+            <Text>{props.obj.portion_cuantity} {props.obj.portion_unity}</Text>
 
         </View>
     )
