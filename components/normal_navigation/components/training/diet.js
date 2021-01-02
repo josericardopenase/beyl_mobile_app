@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import apiClientDiet from '../../../../api/apiClientDiet'
 import useApi from '../../../../customHooks/useApi'
 import useApiCallback from '../../../../customHooks/useApiCallback'
+import ErrorApi from '../../../general_components/error_handling/errorApi'
 import GeneralContainer from '../../../general_components/generalContainer'
 import Loading from '../../../general_components/loading'
 import PalleteColors from '../../../general_components/palleteColors'
@@ -34,6 +35,10 @@ export default function Diet() {
         if(day != undefined){
            dayData.request(day) 
         }
+    }
+
+    if(diet.error){
+        return <ErrorApi error={diet.data.detail}></ErrorApi>
     }
 
     if(diet.loading | dayData.loading){

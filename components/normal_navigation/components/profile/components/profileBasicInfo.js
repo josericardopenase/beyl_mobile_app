@@ -1,24 +1,31 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import apiSettings from '../../../../../api/apiSettings'
 import PalleteColors from '../../../../general_components/palleteColors'
 import ProfileImage from '../../../../general_components/profileImage'
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
-export default function ProfileBasicInfo() {
+export default function ProfileBasicInfo({user}) {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.profile}>
 
-        <ProfileImage size={90}></ProfileImage>
+        <ProfileImage size={90} url={apiSettings.url + user.profile_image}></ProfileImage>
 
         <View style={styles.profileInfo}>
 
-            <Text style={{fontFamily:  "poppins-bold", fontSize: 17 }}>Jose Ricardo Peña Seco</Text>
+            <Text style={{fontFamily:  "poppins-bold", fontSize: 17 }}>{user.first_name + " " + user.last_name}</Text>
             
-            <Text style={{fontFamily:  "poppins-regular", fontSize: 14, color: "grey" }}>jrpenaseco@gmail.com</Text>
+            <Text style={{fontFamily:  "poppins-regular", fontSize: 14, color: "grey" }}>{user.email}</Text>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Settings')}>
 
-                <Text style={{color: "white", textAlign: "center", fontFamily: "poppins-regular", fontSize: 12}}>Modificar perfil</Text>
+                <Text style={{marginRight: 10, color: "white", textAlign: "center", fontFamily: "poppins-regular", fontSize: 12}}>Ajustes</Text>
+                <MaterialCommunityIcons name={"settings"} color="white" size={15}></MaterialCommunityIcons>
 
             </TouchableOpacity>
 
@@ -41,7 +48,10 @@ const styles = StyleSheet.create({
         backgroundColor: PalleteColors.secondColor,
         padding: 3,
         borderRadius: 5,
-        marginTop: 10
+        marginTop: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center"
     }
 
 })

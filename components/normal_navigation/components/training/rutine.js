@@ -9,6 +9,7 @@ import Title from '../../../general_components/title'
 import Excersise from './rutine/excersise'
 import ExcersiseGroup from './rutine/excersiseGroup'
 import Loading from '../../../general_components/loading'
+import ErrorApi from '../../../general_components/error_handling/errorApi'
 
 
 export default function Rutine() {
@@ -35,6 +36,11 @@ export default function Rutine() {
         if(day != undefined){
            dayData.request(day) 
         }
+    }
+
+    if(rutine.error){
+        console.log(rutine.data)
+        return <ErrorApi error={rutine.data.detail}></ErrorApi>
     }
     
     if(!rutine.loading && !dayData.loading){

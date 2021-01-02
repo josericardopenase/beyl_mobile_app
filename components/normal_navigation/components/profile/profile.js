@@ -7,6 +7,7 @@ import FormButton from '../../../general_components/forms/FormButton'
 import GeneralContainer from '../../../general_components/generalContainer'
 import GeneralSafeAreaView from '../../../general_components/generalSafeAreaView'
 import PalleteColors from '../../../general_components/palleteColors'
+import Title3 from '../../../general_components/titles/title3'
 import ProfileBasicInfo from './components/profileBasicInfo'
 import ProfileDetailInfo from './components/profileDetailInfo'
 import ProfileImageInfo from './components/profileImageInfo'
@@ -25,14 +26,12 @@ export default function Profile() {
             <GeneralSafeAreaView>
                 <GeneralContainer>
 
-                    <ProfileBasicInfo/>
+                    <ProfileBasicInfo user={context.user}/>
 
-                    <ProfileDetailInfo/>
-                    
-                    <ProfileImageInfo title='Mi objetivo' description= 'Ganar masa muscular' image = 'https://img.redbull.com/images/c_crop,x_0,y_0,h_2533,w_3800/c_fill,w_860,h_573/q_auto,f_auto/redbullcom/2018/05/15/36f524f6-9d50-4c9d-bbce-8555ed10c8c2/salud-consejos-levantamiento-pesas' color= "#a6c8ff"/>
-                    <ProfileImageInfo title='Edad' description= '18 años' image = 'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2019/03/11/15523046819457.jpg' color= "#fa6b6b"/>
-
-                    <FormButton placeholder="Log out" onPress={logOut}></FormButton>
+                    <View style={{marginTop: 20}}>
+                        <ProfileDetailInfo/>
+                        <FormButton placeholder="Log out" onPress={logOut}></FormButton>
+                    </View>
                 </GeneralContainer>
             </GeneralSafeAreaView>
         </ScrollView>

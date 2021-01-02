@@ -36,7 +36,12 @@ export default function Login() {
     const handleSubmit = async ({email, password}) => {
         const result = await apiAuth.login(email, password);
         if(!result.ok) {
-            setError(result.data.non_field_errors[0]);
+            if(result.data.non_field_errors != undefined)
+                setError(result.data.non_field_errors[0]);
+            else{
+                console.log(result)
+                setError(result.data[0])
+            }
             return setLoginFailed(true);
         } 
         setLoginFailed(false);

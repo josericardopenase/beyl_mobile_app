@@ -10,7 +10,7 @@ export default function Home() {
 
     return (
         <GeneralContainer>
-            <Title title={["Bienvenido, " , user.user + " 👋"]}></Title>
+            <Title title={["Bienvenido, " , user.first_name + " 👋"]}></Title>
         </GeneralContainer>
     )
 }

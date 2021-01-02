@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import PalleteColors from '../palleteColors'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
+
 export default function Input({placeholder, icon, secureTextEntry, ...otherProps}) {
     return (
         <View style={styles.container}>

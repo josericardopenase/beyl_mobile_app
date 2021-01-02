@@ -10,6 +10,7 @@ import ChatTitle from './components/chat/chat_detail_components/chatTitle';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 import ExcersiseVideo from './components/training/excersiseVideo'
+import Settings from './components/profile/settings';
 
 const Stack = createStackNavigator();
 
@@ -90,6 +91,7 @@ export default function TabNavigation() {
     }}  />
     
 
+
     <Stack.Screen name="ChatDetail" component={ChatDetail} options={{
             headerStyle:{
               backgroundColor: PalleteColors.mainColor,
@@ -106,6 +108,14 @@ export default function TabNavigation() {
             headerTitle: props => <ChatTitle></ChatTitle>,
             headerTintColor: "white"
       
+    }}  />
+
+    <Stack.Screen name="Settings" component={Settings} options={{
+            headerTitle: "Ajustes ⚙️",
+            headerStyle: {
+              elevation: 0
+            },
+            cardStyle: {backgroundColor: "white"},
     }}  />
 
     </Stack.Navigator>

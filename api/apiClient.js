@@ -1,11 +1,17 @@
 import { useContext } from "react";
+import storage from "../auth/storage";
 import apiSettings from "./apiSettings";
 
 const { create } = require("apisauce");
 
 const apiClient = create({
     baseURL: apiSettings.url + '/v1/',
-    headers : {Authorization: "Token a0350435d8e585a5744d7b16f20623152e29ee9c"}
 })
+
+apiClient.addAsyncRequestTransform(async (request) => {
+    const authToken = await storage.getUser();
+    if (!authToken) return;
+    request.headers["Authorization"] = "Token " + authToken.token;
+});
 
 export default apiClient
