@@ -21,7 +21,7 @@ export default function ExcersiseMultiple({obj}) {
         <Text style={{fontFamily: "poppins-bold", color: PalleteColors.mainColor}}>{obj.series}</Text>
 
         { obj.excersise.map((obj, i, arr) => (
-            <>
+            <View key={obj.id}>
                 <ImageBackground style={{marginTop: 10}} imageStyle = {{borderRadius: 20}} source={{uri: apiSettings.url + obj.image}} >
                     <View style={{  backgroundColor: "rgba(0, 0, 0, 0.50)", borderRadius: 20,  padding: 15, flexDirection: "column"}}>
                         <TouchableOpacity
@@ -41,7 +41,7 @@ export default function ExcersiseMultiple({obj}) {
                 </ImageBackground>
 
                 { arr.length - 1 !== i ? <MaterialIcon name="plus" size={30} style={{marginTop: 10, alignSelf: "center"}}></MaterialIcon> : null }
-            </>
+            </View>
             )
         )}
         </View>

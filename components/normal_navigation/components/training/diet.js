@@ -64,7 +64,7 @@ export default function Diet() {
                 </View>
 
                 {
-                   dayData.data.diet_groups.map((obj) => <Launch obj={obj}></Launch>) 
+                   dayData.data.diet_groups.map((obj) => <Launch obj={obj} key={obj.id}></Launch>) 
                 }
             </GeneralContainer>
 
