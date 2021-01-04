@@ -38,7 +38,6 @@ function getHeaderTitle(route) {
 export default function TabNavigation() {
   return (
 
-
     <Stack.Navigator >
       <Stack.Screen name="home" component={NormalNavigation} options={({route}) => ({
           headerTransparent: false,

@@ -1,10 +1,11 @@
 
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import apiSettings from '../../../../api/apiSettings';
 import { Video } from 'expo-av';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StatusBar } from 'expo-status-bar';
 
 export default function ExcersiseVideo(props) {
 
@@ -23,18 +24,18 @@ export default function ExcersiseVideo(props) {
     });
 
     return (
-    <View style={{flex : 1, position: "relative"}}>
-
-        <Video source={{uri: video}}   
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        resizeMode="cover"
-        shouldPlay
-        isLooping
-        isMuted
-        style={{ flex: 1}}/>
-
+    <View style={{flex : 1, position: "relative", backgroundColor: "black", overflow: "hidden", alignItems: "center", justifyContent: "center"}}>
+        <View style={{borderRadius: 20, overflow: "hidden"}}>
+            <Video source={{uri: video}}   
+            rate={1.0}
+            volume={1.0}
+            isMuted={false}
+            resizeMode="contain"
+            shouldPlay
+            isLooping
+            isMuted
+            style={{ borderRadius: 30, width:  Dimensions.get('window').width, height : Dimensions.get('window').height}}/>
+        </View>
     </View>
     )
 }
