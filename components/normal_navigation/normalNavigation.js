@@ -16,7 +16,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import HistoryButton from './components/navComponents/HistoryButton';
 import { Dimensions } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import BottomSheetBase from './bottomSheet/bottomSheetBase.js';
 
 
@@ -27,9 +27,8 @@ export default function NormalNavigation() {
 
 
 
-  const {user} = useAuth();
-
-  const sheetRef = React.useRef(null);
+    const {user} = useAuth();
+    const navigation = useNavigation();
 
     return (
 <>
@@ -69,7 +68,7 @@ export default function NormalNavigation() {
             <Tab.Screen name="Trainings" component = {Training}  options = {{tabBarIcon: ({size, color}) => <MaterialIcon name={"fire"} color={color} size={size +5}></MaterialIcon>}}/>
             <Tab.Screen name="Progress" component = {Training}  options = 
             {{
-              tabBarButton: ({size, color}) => <HistoryButton color={color} onPress={() => sheetRef.current.snapTo(0)}></HistoryButton>
+              tabBarButton: ({size, color}) => <HistoryButton color={color} onPress={() => navigation.navigate("Progress")}></HistoryButton>
             }}/>
             
             <Tab.Screen name="Chat" component = {Chat}  options = {{tabBarIcon: ({size, color}) => <Ionicons name={"ios-chatbubbles"} color={color} size={size}></Ionicons>}}/>
@@ -78,7 +77,6 @@ export default function NormalNavigation() {
         </Tab.Navigator>
 
         
-        <BottomSheetBase sheetRef={sheetRef}/>
 
 
         </>

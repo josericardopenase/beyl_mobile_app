@@ -13,6 +13,8 @@ const useApiCallback = (apiFunc, callback) => {
         const data = await apiFunc(...args)
 
         if(!data.ok){
+          console.log(data
+            )
           setError(true)
         }
     

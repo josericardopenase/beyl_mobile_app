@@ -11,6 +11,9 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 import ExcersiseVideo from './components/training/excersiseVideo'
 import Settings from './components/profile/settings';
+import Progress from './components/progress/progress';
+import ActivitieProgress from './components/progress/Activities/activitieProgress';
+
 
 const Stack = createStackNavigator();
 
@@ -117,6 +120,23 @@ export default function TabNavigation() {
             cardStyle: {backgroundColor: "white"},
     }}  />
 
+    <Stack.Screen name="Progress" component={Progress} options={{
+            headerTitle: "Registrar",
+            headerStyle: {
+              elevation: 0
+            },
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: "white"},
+    }}  />
+
+    <Stack.Screen name="ActivitieProgress" component={ActivitieProgress} options={{
+            headerTitle: "Registro",
+            headerStyle: {
+              elevation: 0
+            },
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: "white"},
+    }}  />
     </Stack.Navigator>
   );
 }

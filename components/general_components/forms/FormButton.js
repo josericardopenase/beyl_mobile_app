@@ -11,11 +11,12 @@ export default function FormButton({background, placeholder, color, icon, onPres
                                   alignItems: "center",
                                   marginTop: 15,
                                   flexDirection: "row",
+                                  width: "100%",
                                   justifyContent: "center"}} onPress={() => onPress()}>
             {
                 icon
             }
-            <Text style={{color: color ? color : PalleteColors.background, fontFamily: "poppins-bold", marginLeft: icon ? 20 : 0 }}>{placeholder}</Text>
+            <Text style={{color: color ? color : PalleteColors.background, fontFamily: "poppins-bold", marginLeft: icon ? 20 : 0}}>{placeholder}</Text>
         </TouchableOpacity>
     )
 }
