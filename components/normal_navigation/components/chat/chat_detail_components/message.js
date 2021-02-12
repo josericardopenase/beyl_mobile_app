@@ -9,11 +9,11 @@ export default function Message({message}) {
     const styles = StyleSheet.create({
         box : {
            padding: 10,
-           backgroundColor: message.main ? '#fcdb81' : "white",
+           backgroundColor: message.main ? '#ffc600' : PalleteColors.background,
             maxWidth: "80%",
             margin: 10,
             borderRadius: 10, 
-            color: "#4a4a4a",
+            color: PalleteColors.textPrimaryColor,
             textAlign: message.main ? "right" : "left"
         },
         container : {

@@ -37,8 +37,11 @@ export default function Diet() {
         }
     }
 
-    if(diet.error){
-        return <ErrorApi error={diet.data.detail}></ErrorApi>
+    if(diet.error || day === undefined ){
+        if(diet.error)
+            return <ErrorApi error={rutine.data.detail}></ErrorApi>
+        else
+            return <ErrorApi error={"Tu dieta esta incompleta..."}></ErrorApi>
     }
 
     if(diet.loading | dayData.loading){

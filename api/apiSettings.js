@@ -1,6 +1,6 @@
 
 const apiSettings = {
-   url: 'http://192.168.0.14:9000'
+   url: 'http://d3d9ddc12016.ngrok.io'
 }
 
 export default apiSettings;

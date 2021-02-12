@@ -15,12 +15,17 @@ import useApiCallback from '../../../../../customHooks/useApiCallback';
 import apiGeneralHistory from '../../../../../api/apiGeneralHistory';
 import { useNavigation } from '@react-navigation/native';
 import TitleError from '../../../../general_components/titles/titleError';
+import EventBus from 'eventing-bus'
+import { ADDED_ACTIVITIE } from '../../../../../events/events';
+import useApi from '../../../../../customHooks/useApi';
+import Loading from '../../../../general_components/loading';
+import { set } from 'react-native-reanimated';
 
 const validationSchema = Yup.object().shape({
 
     date: Yup.string().label("date").required(),
     time: Yup.string().label("time").required(),
-    activitie: Yup.string(),
+    name: Yup.string(),
     has_distance: Yup.boolean(),
     distanance : Yup.number()
 
@@ -34,16 +39,15 @@ export default function ActivitieProgress(props) {
     const data = props.route.params
 
     const post_general_history = useApiCallback(apiGeneralHistory.postHistory, (data) => {
-            navigation.navigate("Home")
+        EventBus.publish(ADDED_ACTIVITIE, data);
+        navigation.navigate("Home")
     })
     const [error, setError] = useState(false)
 
-    const handleSubmit = ({values}) => console.log(values)
-
     const sendInformation = async ({date, time, name, has_distance,  distance}) => {
         await post_general_history.request(date, time, name, has_distance, distance)
-    }
 
+    }
 
   return (
     <View>
@@ -58,7 +62,7 @@ export default function ActivitieProgress(props) {
         <Form>
 
                 <Formik
-                    initialValues={{date: '', time: '', name: data.name, has_distance: false, distance: 0}}
+                    initialValues={{date: '', time: '', name: data.emoji + " " + data.name, has_distance: false, distance: 0}}
                     onSubmit={values => sendInformation(values)}
                     validationSchema={validationSchema}>
                         {

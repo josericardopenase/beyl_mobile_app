@@ -13,7 +13,8 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function Training() {
     return (
-        <Tab.Navigator tabBarOptions={{indicatorStyle: {backgroundColor: PalleteColors.mainColor}, labelStyle: {fontFamily: "poppins-regular", fontSize: 12, margin: 0, textTransform: 'none' }, style: {elevation: 0}}} >
+        <Tab.Navigator tabBarOptions={{
+          indicatorStyle: {backgroundColor: PalleteColors.mainColor}, labelStyle: {fontFamily: "poppins-regular", fontSize: 12, margin: 0, textTransform: 'none' , color: PalleteColors.textPrimaryColor}, style: {elevation: 0, backgroundColor: PalleteColors.background}}} >
           <Tab.Screen name="Ejercicio" component={Rutine} options={{tabBarLabel: "Rutina"}}/>
           <Tab.Screen name="Dieta" component={Diet} />
         </Tab.Navigator>

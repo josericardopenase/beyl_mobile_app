@@ -15,7 +15,7 @@ export default function Launch({obj}) {
     const styles = StyleSheet.create({
         container : {
             padding: 10,
-            backgroundColor: enabled ? PalleteColors.mainColor : "white" , 
+            backgroundColor: enabled ? PalleteColors.mainColor : PalleteColors.background , 
             borderRadius: 10, 
             marginTop: 10,
 
@@ -24,7 +24,7 @@ export default function Launch({obj}) {
             fontFamily: "poppins-bold",
             fontSize: 21, 
             marginLeft: 10,
-            color: enabled ? "white" : PalleteColors.secondColor,
+            color: enabled ? "white" : PalleteColors.textPrimaryColor,
         },
         header :{
             flexDirection: "row", 
@@ -45,7 +45,7 @@ export default function Launch({obj}) {
                         <Text style={styles.title}>{obj.name}</Text>
                     </View>
                     
-                    <MaterialIcons name={ enabled ? "arrow-down" : "arrow-right"} size={30} color={ enabled ? "white" : PalleteColors.secondColor}></MaterialIcons>
+                    <MaterialIcons name={ enabled ? "arrow-down" : "arrow-right"} size={30} color={ enabled ? "white" : PalleteColors.textPrimaryColor}></MaterialIcons>
                 
                 </View>
                 </TouchableOpacity>

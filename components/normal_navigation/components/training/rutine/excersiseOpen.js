@@ -15,7 +15,7 @@ export default function ExcersiseOpen({description, id}) {
 
             <GeneralContainer>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
-                     <MaterialIcon name="note" size={18} color={PalleteColors.secondColor} style={{marginBottom: 5}}></MaterialIcon>
+                     <MaterialIcon name="note" size={18} color={PalleteColors.textPrimaryColor} style={{marginBottom: 5}}></MaterialIcon>
                      <Text style={styles.titulo}>Anotaciones:</Text>
                 </View>   
                 <Text style={{fontFamily: "poppins-regular", color: "grey"}}>{description ? description : "Ninguna anotacion"}</Text>

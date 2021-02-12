@@ -2,18 +2,17 @@ import * as SecureStore from 'expo-secure-store';
 
 const key = "user";
 
-const setUser = async authUser => {
+const setUser = async token => {
     try{
-        await SecureStore.setItemAsync(key, JSON.stringify(authUser));
+        await SecureStore.setItemAsync(key, token);
     }catch(error){
         console.log("Error storing token", error);
     }
 }
 
-
 const getUser = async () => {
     try{
-        return await SecureStore.getItemAsync(key).then(data => data ? JSON.parse(data) : undefined);
+        return await SecureStore.getItemAsync(key);
     }catch(error){
         console.log("Error storing token", error);
     }

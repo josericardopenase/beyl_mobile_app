@@ -37,7 +37,7 @@ export default function ExcersiseDetail(props) {
     console.log(excersise.data)
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
-            <Image style={{width: "100%", height: 410}} source={{uri: apiSettings.url + excersise.data.image}}></Image>
+            <Image style={{width: "100%", height: 410}} source={{uri:  excersise.data.image}}></Image>
             
             <View style={Styles.container}>
 
@@ -66,7 +66,7 @@ export default function ExcersiseDetail(props) {
 const Styles = StyleSheet.create({
     container : {
         borderRadius: 40, 
-        backgroundColor: "white",
+        backgroundColor: PalleteColors.background,
         marginTop: -40
     }
 })

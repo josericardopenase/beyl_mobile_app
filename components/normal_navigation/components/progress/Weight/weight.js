@@ -11,6 +11,8 @@ import apiUpdateWeight from '../../../../../api/apiUpdateWeight';
 import useApiCallback from '../../../../../customHooks/useApiCallback';
 import Loading from '../../../../general_components/loading';
 import { useNavigation } from '@react-navigation/native';
+import EventBus from 'eventing-bus';
+import { MODIFIED_WEIGHT, WEIGHT_MODIFIED } from '../../../../../events/events';
 
 export default function Weight() {
     
@@ -21,14 +23,17 @@ export default function Weight() {
 
     const [weight, setWeight] = useState(70.0)
     const [decimal, setDecimal] = useState(true)
-    
+    const [loading, setLoading] = useState(false)
 
     const get_weight = useApiCallback(apiUpdateWeight.getWeight, (data) => {setWeight(parseFloat(data.weight))})
     const post_weight = useApiCallback(apiUpdateWeight.postWeight, (data) => navigation.navigate('home'))
 
     useEffect(() => {
+
         get_weight.request()
+
     }, [])
+
 
     const weightDecimals = Math.floor(((weight - Math.floor(weight)) * 10))
     var timer = null;
@@ -43,10 +48,13 @@ export default function Weight() {
     }
 
     async function updateWeight(){
+        setLoading(true)
         await post_weight.request(weight)
+        setLoading(false)
+        EventBus.publish(WEIGHT_MODIFIED, weight)
     }
 
-    if(get_weight.loading)
+    if(get_weight.loading || loading)
         return <Loading></Loading>
 
     return (
@@ -71,9 +79,8 @@ export default function Weight() {
                         <Feather name="plus-circle" size={25} color={PalleteColors.textSecondaryColor}></Feather>
                     </TouchableOpacity>
                 </View>
-
-
             </View>
+
             <FormButton placeholder="Registrar" width="70%" onPress={updateWeight}></FormButton>
         </GeneralContainer>
 );

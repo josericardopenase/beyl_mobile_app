@@ -8,7 +8,7 @@ export default function Input({placeholder, icon, secureTextEntry, ...otherProps
     return (
         <View style={styles.container}>
             { icon &&  <MaterialCommunityIcons style={styles.icon} name={icon} size={20} color={PalleteColors.textSecondaryColor} ></MaterialCommunityIcons>}
-            <TextInput style={styles.textInput} placeholder={placeholder} secureTextEntry={secureTextEntry} {...otherProps}></TextInput>
+            <TextInput style={styles.textInput} placeholderTextColor={PalleteColors.textPrimaryColor} placeholder={placeholder} secureTextEntry={secureTextEntry} {...otherProps}></TextInput>
         </View>
    )
 }
@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
     textInput: {
         fontSize: 14,
         fontFamily: "poppins-regular",
-        width: "100%"
+        width: "100%",
+        color: PalleteColors.textPrimaryColor,
+        paddingRight:30
+        
     }
 
 });

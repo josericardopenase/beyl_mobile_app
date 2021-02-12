@@ -20,14 +20,11 @@ import storage from '../../../auth/storage'
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
-    password: Yup.string().required().min(7).label("Password").matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
-      "Insecure password"
-    )
-
+    password: Yup.string().required().label("Password")
 })
 
 export default function Login() {
+
     const authContext = useContext(AuthContext);
 
     const [loginFailed, setLoginFailed ] = useState(false);
@@ -35,6 +32,7 @@ export default function Login() {
 
     const handleSubmit = async ({email, password}) => {
         const result = await apiAuth.login(email, password);
+
         if(!result.ok) {
             if(result.data.non_field_errors != undefined)
                 setError(result.data.non_field_errors[0]);
@@ -44,34 +42,35 @@ export default function Login() {
             }
             return setLoginFailed(true);
         } 
+
         setLoginFailed(false);
-        authContext.setUser(result.data);
-        storage.setUser(result.data);
+        authContext.setUser(result.data.token);
+        console.log(result)
+        storage.setUser(result.data.token);
     }
 
     return (
         <GeneralContainer>
             <View style={{
-                justifyContent: "center"
+                justifyContent: "center",
+                alignContent: "center"
             }}>
                 <Title1 style={{marginTop: 20, alignSelf: "center"}}><Bold>Inicia sesión en Beyl</Bold></Title1>
 
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={values => handleSubmit(values)}
-                    validationSchema={validationSchema}>
+                    validationSchema={validationSchema}
+                    >
                         {
                             ({handleSubmit}) => (
 
-                            <Form style={{marginTop: 40}}>
+                            <Form style={{marginTop: 70}}>
                                 <FormEmail/>
                                 <FormPassword/>
+                                <TitleError error={error} visible={loginFailed} />
                                 <FormButton placeholder="¿Olvidaste tu contraseña?" background={PalleteColors.background} color={PalleteColors.textSecondaryColor}></FormButton>
                                 <FormButton placeholder="Acceder" onPress={handleSubmit}></FormButton>
-                                <TitleError error={error} visible={loginFailed} />
-                                <Title5 style={{alignSelf: "center", marginTop: 20}}>o</Title5>
-                                <FormFacebook></FormFacebook>
-                                <FormGoogle></FormGoogle>
                             </Form>
 
                             )

@@ -11,7 +11,7 @@ const apiClient = create({
 apiClient.addAsyncRequestTransform(async (request) => {
     const authToken = await storage.getUser();
     if (!authToken) return;
-    request.headers["Authorization"] = "Token " + authToken.token;
+    request.headers["Authorization"] = "Token " + authToken;
 });
 
 export default apiClient

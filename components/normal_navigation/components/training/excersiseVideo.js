@@ -5,7 +5,6 @@ import apiSettings from '../../../../api/apiSettings';
 import { Video } from 'expo-av';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StatusBar } from 'expo-status-bar';
 
 export default function ExcersiseVideo(props) {
 

@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react'
+import React, { useEffect } from 'react'
 import NormalNavigation from './normalNavigation';
 import ImageView from '../general_components/imageView';
 import ExcersiseDetail from './components/training/excersiseDetail';
@@ -13,11 +13,13 @@ import ExcersiseVideo from './components/training/excersiseVideo'
 import Settings from './components/profile/settings';
 import Progress from './components/progress/progress';
 import ActivitieProgress from './components/progress/Activities/activitieProgress';
+import ArticleDetail from './components/home/ArticleDetail';
+import useProfile from '../../auth/useProfile';
+import apiProfile from '../../api/apiProfile';
+import ProgressHistory from './components/progress/progressHistory';
 
 
 const Stack = createStackNavigator();
-
-
 
 function getHeaderTitle(route) {
   // If the focused route is not found, we need to assume it's the initial screen
@@ -37,25 +39,29 @@ function getHeaderTitle(route) {
 
   }
 }
-
 export default function TabNavigation() {
+
   return (
 
-    <Stack.Navigator >
+    <Stack.Navigator screenOptions={{
+      headerTintColor: PalleteColors.textPrimaryColor,
+      headerStyle:{
+        elevation: 0,
+        borderBottomColor: PalleteColors.background,
+        backgroundColor: PalleteColors.background,
+        borderBottomWidth: 1,
+
+      },
+        headerTitleStyle: {
+          alignSelf: "center",
+          fontFamily: "poppins-bold",
+          fontSize: 15
+        },
+    }
+    }>
       <Stack.Screen name="home" component={NormalNavigation} options={({route}) => ({
           headerTransparent: false,
           headerShown: true,
-          headerStyle:{
-            elevation: 0,
-            borderBottomColor: "#f5f5f5",
-            borderBottomWidth: 1,
-    
-          },
-          headerTitleStyle: {
-            alignSelf: "center",
-            fontFamily: "poppins-bold",
-            fontSize: 15
-          },
           headerTitle: getHeaderTitle(route),
           
       })} />
@@ -64,78 +70,75 @@ export default function TabNavigation() {
       headerTitle: "",
       gestureEnabled: true,
       cardStyle : {backgroundColor: "rgba(0,0,0, 0.90)"},
-      headerTintColor: "white"
+      headerTintColor: PalleteColors.background
     }}   />
 
 
       
 
     <Stack.Screen name="RutineDetail" component={ExcersiseDetail} options={{
-            headerTintColor: "white",
+            headerTintColor: PalleteColors.background,
             headerTransparent: true,
             headerTitle: "",
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
     }}  />
 
     <Stack.Screen name="ExcersiseVideo" component={ExcersiseVideo} options={{
-            headerTintColor: "white",
+            headerTintColor: PalleteColors.background,
             headerTransparent: true,
             headerTitle: "",
             gestureEnabled: true,
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
     }}  />
 
     <Stack.Screen name="RecipeDetail" component={RecipeDetail} options={{
-            headerTintColor: "white",
+            headerTintColor: PalleteColors.background,
             headerTransparent: true,
             headerTitle: "",
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
     }}  />
     
 
 
     <Stack.Screen name="ChatDetail" component={ChatDetail} options={{
-            headerStyle:{
-              backgroundColor: PalleteColors.mainColor,
-              elevation: 0,
-            },
             headerTitle: "Jose Ricardo Peña",
-            headerTitleStyle: {
-              color: "white",
-            },
             headerTitleContainerStyle: {
               left: 50,
               right: 0,
             },
             headerTitle: props => <ChatTitle></ChatTitle>,
-            headerTintColor: "white"
+            headerTintColor: PalleteColors.background
       
     }}  />
 
     <Stack.Screen name="Settings" component={Settings} options={{
             headerTitle: "Ajustes ⚙️",
-            headerStyle: {
-              elevation: 0
-            },
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
     }}  />
 
     <Stack.Screen name="Progress" component={Progress} options={{
             headerTitle: "Registrar",
-            headerStyle: {
-              elevation: 0
-            },
             gestureEnabled: true,
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
     }}  />
 
     <Stack.Screen name="ActivitieProgress" component={ActivitieProgress} options={{
             headerTitle: "Registro",
-            headerStyle: {
-              elevation: 0
-            },
             gestureEnabled: true,
-            cardStyle: {backgroundColor: "white"},
+            cardStyle: {backgroundColor: PalleteColors.background},
+    }}  />
+
+    <Stack.Screen name="Article" component={ArticleDetail} options={{
+            headerTitle: "Artículo",
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: PalleteColors.background},
+    }}  />
+
+    <Stack.Screen name="ProgressHistorial" component={ProgressHistory} options={{
+            headerTitle: "Historial",
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: PalleteColors.backgroundSecondary},
+            
     }}  />
     </Stack.Navigator>
   );

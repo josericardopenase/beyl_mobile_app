@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.ADDED_ACTIVITIE=exports.WEIGHT_MODIFIED=void 0;var WEIGHT_MODIFIED="weightModified";exports.WEIGHT_MODIFIED=WEIGHT_MODIFIED;var ADDED_ACTIVITIE="activitieAdded";exports.ADDED_ACTIVITIE=ADDED_ACTIVITIE;

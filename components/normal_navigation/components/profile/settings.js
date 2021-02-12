@@ -5,8 +5,10 @@ import storage from '../../../../auth/storage'
 import useAuth from '../../../../auth/useAuth'
 import GeneralContainer from '../../../general_components/generalContainer'
 import Bold from '../../../general_components/titles/bold'
+import Title1 from '../../../general_components/titles/title2'
 import Title3 from '../../../general_components/titles/title3'
 import Title5 from '../../../general_components/titles/title5'
+import SettingOption from './settings/settingOption'
 
 export default function Settings() {
 
@@ -21,8 +23,12 @@ export default function Settings() {
 
     return (
         <GeneralContainer>
-            <Text>this are your settings</Text>
+            <View style={{marginTop: 20, marginBottom: 20}}>
 
+                <SettingOption icon="user-circle"> Cuenta</SettingOption>
+                <SettingOption icon="fish">Alergias</SettingOption>
+
+            </View>
             <TouchableOpacity onPress={()=> logOut()}>
                 <Title3 color="#ffc600"><Bold>Cerrar sesion</Bold></Title3>
             </TouchableOpacity>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
+import PalleteColors from '../../../../general_components/palleteColors'
 
 export default function Food(props) {
 
@@ -8,7 +9,7 @@ export default function Food(props) {
             flexDirection: "row",
             justifyContent: "space-between",
             padding: 10,
-            backgroundColor: props.backgroundColor ? props.backgroundColor: "white",
+            backgroundColor: props.backgroundColor ? PalleteColors.backgroundSecondary: PalleteColors.background,
             borderRadius: 10,
             alignItems: "center",
             marginTop: 10
@@ -27,11 +28,11 @@ export default function Food(props) {
 
             <View style={{flexDirection: "row", alignItems: "center"}}>
 
-                <Text style={{marginLeft: 10, fontFamily: "poppins-regular", fontSize: 15}}>{props.obj.food.name}</Text>
+                <Text style={{marginLeft: 10, fontFamily: "poppins-regular", fontSize: 15, color: PalleteColors.textPrimaryColor}}>{props.obj.food.name}</Text>
 
             </View>
 
-            <Text>{props.obj.portion_cuantity} {props.obj.portion_unity}</Text>
+            <Text style={{color: PalleteColors.textPrimaryColor}}>{props.obj.portion_cuantity} {props.obj.portion_unity}</Text>
 
         </View>
     )

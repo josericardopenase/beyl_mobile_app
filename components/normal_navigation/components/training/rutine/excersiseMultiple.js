@@ -17,7 +17,7 @@ export default function ExcersiseMultiple({obj}) {
 
     return (
         <View style={{backgroundColor: PalleteColors.background, padding: 15, borderRadius: 20,  marginTop: 15}}>
-        <Title3><Bold>Superserie</Bold></Title3>
+        <Title3 primary={true}><Bold>Superserie</Bold></Title3>
         <Text style={{fontFamily: "poppins-bold", color: PalleteColors.mainColor}}>{obj.series}</Text>
 
         { obj.excersise.map((obj, i, arr) => (
@@ -40,7 +40,7 @@ export default function ExcersiseMultiple({obj}) {
 
                 </ImageBackground>
 
-                { arr.length - 1 !== i ? <MaterialIcon name="plus" size={30} style={{marginTop: 10, alignSelf: "center"}}></MaterialIcon> : null }
+                { arr.length - 1 !== i ? <MaterialIcon name="plus" size={30} style={{marginTop: 10, alignSelf: "center"}} color={PalleteColors.textPrimaryColor}></MaterialIcon> : null }
             </View>
             )
         )}

@@ -10,7 +10,8 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function Progress() {
   return (
-        <Tab.Navigator tabBarOptions={{indicatorStyle: {backgroundColor: PalleteColors.mainColor}, labelStyle: {fontFamily: "poppins-regular", fontSize: 12, margin: 0, textTransform: 'none' }, style: {elevation: 0}}} >
+        <Tab.Navigator tabBarOptions={{
+          indicatorStyle: {backgroundColor: PalleteColors.mainColor}, labelStyle: {fontFamily: "poppins-regular", fontSize: 12, margin: 0, textTransform: 'none' , color: PalleteColors.textPrimaryColor}, style: {elevation: 0, backgroundColor: PalleteColors.background}}} >
           <Tab.Screen name="Peso" component={Weight}/>
           <Tab.Screen name="Actividades" component={Activities} />
         </Tab.Navigator>

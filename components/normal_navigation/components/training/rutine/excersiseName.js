@@ -7,7 +7,7 @@ export default function ExcersiseName(props) {
     return (
     <View style={{alignItems: "center", marginBottom: 20, marginTop: 20}}>
 
-        <Text style={{fontFamily: "poppins-bold", marginTop: 20, fontSize: 21}}>{props.name}</Text>
+        <Text style={{fontFamily: "poppins-bold", marginTop: 20, fontSize: 21, color: PalleteColors.textPrimaryColor}}>{props.name}</Text>
         
     </View>
 

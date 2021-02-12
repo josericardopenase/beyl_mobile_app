@@ -30,10 +30,8 @@ export default function Base() {
                     <Form style={{width: "100%", paddingLeft : 30, paddingRight : 30, paddingTop: 0}}>
 
 
-                        <FormFacebook />
-                        <FormGoogle />
 
-                        <FormButton placeholder="Accede con tu email" icon={
+                        <FormButton placeholder="Crear cuenta nueva" onPress={() => navigation.navigate('Code')} icon={
                             <MaterialIcon name="email" color="white" size={25}></MaterialIcon>
                         } />
                         <Title5  style={{alignSelf: "center", marginTop: 20}}> ¿Ya tienes cuenta?</Title5>
@@ -54,18 +52,18 @@ export default function Base() {
 
 const styles = StyleSheet.create({
     containerLogo : {
-        height: 320,
+        height: 520,
         backgroundColor: "#ffc600",
         justifyContent: "center",
         alignItems: "center"
     },
     containerLogin: {
-        borderTopStartRadius: 50,
-        borderTopEndRadius:50,
+        borderTopStartRadius: 30,
+        borderTopEndRadius:30,
         marginTop: -60,
         width: "100%",
         flex : 1,
-        backgroundColor: "white",
+        backgroundColor: PalleteColors.background,
         justifyContent: "center"
     },
     containerFields : {

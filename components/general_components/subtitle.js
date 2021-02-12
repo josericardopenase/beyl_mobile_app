@@ -5,7 +5,7 @@ import PalleteColors from './palleteColors'
 export default function Subtitle(props) {
     return (
 
-        <Text style={{fontSize: 17, fontFamily: "poppins-bold", color: PalleteColors.secondColor, marginBottom: props.marginBottom}}>{props.children}</Text>
+        <Text style={{fontSize: 17, fontFamily: "poppins-bold", color: PalleteColors.textPrimaryColor, marginBottom: props.marginBottom}}>{props.children}</Text>
 
 
     )

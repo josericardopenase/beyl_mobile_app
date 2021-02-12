@@ -12,7 +12,7 @@ export default function ActivitieDisplay({name, emoji}) {
     const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('ActivitieProgress', {emoji : emoji, name : name})} style={{flexDirection: "row", justifyContent: "space-between", padding: 14, borderBottomColor: "#e5e5e5", borderBottomWidth: 1, alignItems: "center"}}> 
+    <TouchableOpacity onPress={() => navigation.navigate('ActivitieProgress', {emoji : emoji, name : name})} style={{flexDirection: "row", justifyContent: "space-between", padding: 14, borderBottomColor: PalleteColors.textSecondaryColor, borderBottomWidth: 1, alignItems: "center"}}> 
             <Title3 primary={true}><Bold>{emoji} {name}</Bold></Title3> 
              <Feather name={"arrow-right"} size={20} color={PalleteColors.textSecondaryColor}></Feather>
      </TouchableOpacity>

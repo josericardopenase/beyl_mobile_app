@@ -11,16 +11,18 @@ export default function ProfileBasicInfo({user}) {
 
     const navigation = useNavigation();
 
+
+
     return (
         <View style={styles.profile}>
 
-        <ProfileImage size={90} url={apiSettings.url + user.profile_image}></ProfileImage>
+        <ProfileImage size={90} url={apiSettings.url + user.profile_pic}></ProfileImage>
 
         <View style={styles.profileInfo}>
 
-            <Text style={{fontFamily:  "poppins-bold", fontSize: 17 }}>{user.first_name + " " + user.last_name}</Text>
+            <Text style={{fontFamily:  "poppins-bold", fontSize: 17 , color: PalleteColors.textPrimaryColor}}>{user.first_name + " " + user.last_name}</Text>
             
-            <Text style={{fontFamily:  "poppins-regular", fontSize: 14, color: "grey" }}>{user.email}</Text>
+            <Text style={{fontFamily:  "poppins-regular", fontSize: 14, color: PalleteColors.textSecondaryColor }}>{user.email}</Text>
 
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Settings')}>
 
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "100%",
-        backgroundColor: PalleteColors.secondColor,
+        backgroundColor: PalleteColors.background,
         padding: 3,
         borderRadius: 5,
         marginTop: 10,

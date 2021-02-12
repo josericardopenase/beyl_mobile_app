@@ -51,7 +51,7 @@ export default function NormalNavigation() {
                 elevation: 0,
                 shadowOpacity: 0,
                 borderTopWidth: 0,
-                backgroundColor: "white",
+                backgroundColor: PalleteColors.background,
             },
     
             
@@ -72,7 +72,7 @@ export default function NormalNavigation() {
             }}/>
             
             <Tab.Screen name="Chat" component = {Chat}  options = {{tabBarIcon: ({size, color}) => <Ionicons name={"ios-chatbubbles"} color={color} size={size}></Ionicons>}}/>
-            <Tab.Screen name="Profile" component = {Profile}  options = {{tabBarIcon: ({size, color, focused}) => <View style={{borderWidth: 1, borderRadius: 500, padding: 1, borderColor: focused ? color  : "white"}}><Image style={{width: size, height: size, borderRadius: 600}} source={{uri: apiSettings.url + user.profile_image }}/></View>}}/>
+            <Tab.Screen name="Profile" component = {Profile}  options = {{tabBarIcon: ({size, color, focused}) => <Ionicons name={"ios-person"} color={color} size={size}></Ionicons>}}/>
 
         </Tab.Navigator>
 

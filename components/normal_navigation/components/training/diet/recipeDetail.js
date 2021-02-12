@@ -7,6 +7,7 @@ import apiSettings from '../../../../../api/apiSettings'
 import useApi from '../../../../../customHooks/useApi'
 import GeneralContainer from '../../../../general_components/generalContainer'
 import Loading from '../../../../general_components/loading'
+import PalleteColors from '../../../../general_components/palleteColors'
 import Subtitle from '../../../../general_components/subtitle'
 import Title from '../../../../general_components/title'
 import Food from './food'
@@ -32,7 +33,7 @@ export default function recipeDetail(props) {
                 <GeneralContainer>
 
                     {/* Titulo */}
-                    <Text style={{alignSelf: "center", fontSize: 21, fontFamily: "poppins-bold", marginTop: 20, marginBottom: 20}}>{recipe.data.name}</Text>
+                    <Text style={{alignSelf: "center", fontSize: 21, fontFamily: "poppins-bold", marginTop: 20, marginBottom: 20, color: PalleteColors.textPrimaryColor}}>{recipe.data.name}</Text>
                     
                     {/* INGREDIENTES */}
                     <Subtitle>Ingredientes</Subtitle>
@@ -60,7 +61,7 @@ export default function recipeDetail(props) {
 const Styles = StyleSheet.create({
     container : {
         borderRadius: 40, 
-        backgroundColor: "white",
+        backgroundColor: PalleteColors.background,
         marginTop: -40,
     }
 })

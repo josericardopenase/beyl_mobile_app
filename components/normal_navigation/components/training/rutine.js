@@ -38,9 +38,13 @@ export default function Rutine() {
         }
     }
 
-    if(rutine.error){
-        console.log(rutine.data)
-        return <ErrorApi error={rutine.data.detail}></ErrorApi>
+    console.log(rutine)
+
+    if(rutine.error || day === undefined ){
+        if(rutine.error)
+            return <ErrorApi error={rutine.data.detail}></ErrorApi>
+        else
+            return <ErrorApi error={"Tu rutina esta incompleta..."}></ErrorApi>
     }
     
     if(!rutine.loading && !dayData.loading){

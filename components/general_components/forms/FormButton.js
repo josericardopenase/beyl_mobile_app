@@ -16,7 +16,7 @@ export default function FormButton({background, placeholder, color, icon, onPres
             {
                 icon
             }
-            <Text style={{color: color ? color : PalleteColors.background, fontFamily: "poppins-bold", marginLeft: icon ? 20 : 0}}>{placeholder}</Text>
+            <Text style={{color: color ? color : "white", fontFamily: "poppins-bold", marginLeft: icon ? 20 : 0}}>{placeholder}</Text>
         </TouchableOpacity>
     )
 }
