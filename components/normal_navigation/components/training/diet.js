@@ -38,10 +38,7 @@ export default function Diet() {
     }
 
     if(diet.error || day === undefined ){
-        if(diet.error)
-            return <ErrorApi error={rutine.data.detail}></ErrorApi>
-        else
-            return <ErrorApi error={"Tu dieta esta incompleta..."}></ErrorApi>
+            return <ErrorApi error={"Tu dieta no esta disponible espera que tu entrenador la termine"}></ErrorApi>
     }
 
     if(diet.loading | dayData.loading){
