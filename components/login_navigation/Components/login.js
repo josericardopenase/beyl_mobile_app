@@ -17,6 +17,8 @@ import apiAuth from '../../../api/apiAuth'
 import TitleError from '../../general_components/titles/titleError'
 import AuthContext from '../../../auth/context'
 import storage from '../../../auth/storage'
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -30,6 +32,22 @@ export default function Login() {
     const [loginFailed, setLoginFailed ] = useState(false);
     const [error, setError ] = useState("");
 
+    const registerForPushNotifications = async () => {
+        try {
+            const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            if (!permission.granted) return;
+            const token = await Notifications.getExpoPushTokenAsync();
+
+
+            const result = await apiAuth.saveToken(token.data)
+
+        } catch (error) {
+            console.log('Error getting a token', error);
+
+        }
+    };
+
+
     const handleSubmit = async ({email, password}) => {
         const result = await apiAuth.login(email, password);
 
@@ -37,16 +55,20 @@ export default function Login() {
             if(result.data.non_field_errors != undefined)
                 setError(result.data.non_field_errors[0]);
             else{
-                console.log(result)
                 setError(result.data[0])
             }
             return setLoginFailed(true);
         } 
 
         setLoginFailed(false);
+
+        await apiAuth.saveToken()
+
+
         authContext.setUser(result.data.token);
-        console.log(result)
         storage.setUser(result.data.token);
+
+        await registerForPushNotifications();
     }
 
     return (

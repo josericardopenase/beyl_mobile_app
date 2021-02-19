@@ -17,7 +17,7 @@ import ArticleDetail from './components/home/ArticleDetail';
 import useProfile from '../../auth/useProfile';
 import apiProfile from '../../api/apiProfile';
 import ProgressHistory from './components/progress/progressHistory';
-
+import * as Permissions from 'expo-permissions';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +39,8 @@ function getHeaderTitle(route) {
 
   }
 }
+
+
 export default function TabNavigation() {
 
   return (

@@ -40,7 +40,6 @@ export default function Code() {
         }
 
         setInformation(result.data)
-        console.log(information)
         setError(false)
         setModal(true)
     }

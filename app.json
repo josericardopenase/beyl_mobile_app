@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "Beylapp",
+    "slug": "beylapp",
     "scheme": "beyl",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,9 +23,20 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-  "androidNavigationBar": {
-   "barStyle": "light-content",
-   "backgroundColor": "#1E2025"
- }
-}
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#1E2025"
+    },
+    "android": {
+      "icon": "./assets/beyl.png",
+      "useNextNotificationsApi": true,
+      "package": "com.josericardopeanse.beylapp"
+    },
+    "notification": {
+      "icon": "./assets/beyl.png",
+      "color": "#FFC600",
+      "iosDisplayInForeground": true,
+      "androidMode": "default"
+    }
+  }
 }

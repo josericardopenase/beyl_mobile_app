@@ -18,6 +18,8 @@ import TitleError from '../../general_components/titles/titleError'
 import AuthContext from '../../../auth/context'
 import storage from '../../../auth/storage'
 import FormPicker from '../../general_components/forms/FormPicker'
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -44,15 +46,32 @@ export default function Register(props) {
     const [loginFailed, setLoginFailed ] = useState(false);
     const [error, setError ] = useState("");
 
+    const registerForPushNotifications = async () => {
+
+
+
+        try {
+            const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            if (!permission.granted) return;
+            const token = await Notifications.getExpoPushTokenAsync();
+
+
+            const result = await apiAuth.saveToken(token.data)
+
+        } catch (error) {
+            console.log('Error getting a token', error);
+
+        }
+    };
+
+
     const handleSubmit = async (values) => {
-        console.log(values)
         const result = await apiAuth.register(values);
 
         if(!result.ok) {
             if(result.data.non_field_errors != undefined)
                 setError(result.data.non_field_errors[0]);
             else{
-                console.log(result)
                 setError("Este email ya esta en uso")
             }
 
@@ -65,6 +84,7 @@ export default function Register(props) {
             authContext.setUser(result.data.token);
             storage.setUser(result.data.token);
 
+            await registerForPushNotifications();
         }
     }
 

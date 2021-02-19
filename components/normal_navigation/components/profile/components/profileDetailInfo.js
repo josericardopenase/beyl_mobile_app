@@ -12,6 +12,7 @@ import { WEIGHT_MODIFIED } from '../../../../../events/events'
 import TrainerInformation from './trainerInformation'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { getIn } from 'formik'
 
 export default function ProfileDetailInfo() {
 
@@ -29,6 +30,8 @@ export default function ProfileDetailInfo() {
     if(getInformation.loading){
         return <Loading></Loading>
     }
+
+    console.log(getInformation)
     
     return (
         <>

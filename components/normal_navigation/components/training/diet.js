@@ -1,5 +1,5 @@
 import { Picker } from '@react-native-community/picker'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, RefreshControl } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import apiClientDiet from '../../../../api/apiClientDiet'
@@ -10,24 +10,55 @@ import GeneralContainer from '../../../general_components/generalContainer'
 import Loading from '../../../general_components/loading'
 import PalleteColors from '../../../general_components/palleteColors'
 import Launch from './diet/launch'
+import * as Notifications from 'expo-notifications';
 
 export default function Diet() {
     
-    const diet = useApiCallback(apiClientDiet.getDiet, (data) => { setDay(data.diet_days[0].id)  })
+    const diet = useApiCallback(apiClientDiet.getDiet, (data) => { 
+        
+		if (data.diet_days !== undefined) if (data.diet_days.length > 0) if(data.diet_days[0] !== undefined) return setDay(data.diet_days[0].id);
+
+        setDay(undefined)  
+    
+    })
     const dayData = useApiCallback(apiClientDiet.getDietDay, (data) => setRefreshing(false))
     const [day, setDay] = useState()
     const [refreshing, setRefreshing] = useState(false) 
 
-    useEffect(() => {
+    const notificationListener = useRef();
+    const responseListener = useRef()
 
-        diet.request();
 
-    }, [])
+
+
+    useEffect(() =>
+    {
+        
+        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+
+            const data = notification.request.content.data
+
+            if(data){
+                if(data.action === "reloadDiet"){
+                    diet.request()
+                    if(day != undefined){
+                        dayData.request(day) 
+                    }
+                }
+            }
+
+        })
+
+        diet.request()
+
+    },[])
 
     useEffect(() =>{
+        diet.request()
         if(day != undefined){
-            dayData.request(day);
+            dayData.request(day) 
         }
+
     }, [day])
 
     const onRefresh = () => {
@@ -45,7 +76,6 @@ export default function Diet() {
         return <Loading></Loading>
     }
 
-    console.log(day)
 
     return (
     

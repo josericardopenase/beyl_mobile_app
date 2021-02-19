@@ -9,7 +9,6 @@ export default function BottomSheetBase({sheetRef}) {
       //FIXME : A VECES HACE OVERRIDE A LAS FUNCIONALIDADES DEL BACK Y NO DEJA VOLVER DE PESTA;A
 
       const onBackPress = () => {
-        console.log(open)
         if (open) {
           sheetRef.current.snapTo(1);
           BackHandler.removeEventListener('hardwareBackPress', onBackPress);

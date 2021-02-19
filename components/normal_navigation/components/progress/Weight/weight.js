@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text , StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import GeneralContainer from '../../../../general_components/generalContainer';
 import { BaseButton, TouchableOpacity } from 'react-native-gesture-handler';
 import FormButton from '../../../../general_components/forms/FormButton';
@@ -13,84 +13,104 @@ import Loading from '../../../../general_components/loading';
 import { useNavigation } from '@react-navigation/native';
 import EventBus from 'eventing-bus';
 import { MODIFIED_WEIGHT, WEIGHT_MODIFIED } from '../../../../../events/events';
+import { Notifications } from '@material-ui/icons';
+import * as notify from 'expo-notifications';
 
 export default function Weight() {
-    
+	//FIXME: REFACTORIZE THE CODE AND HOLD BUTTON BEHAVIUR
 
-    //FIXME: REFACTORIZE THE CODE AND HOLD BUTTON BEHAVIUR
+	const navigation = useNavigation();
 
-    const navigation = useNavigation()
+	const [ weight, setWeight ] = useState(70.0);
+	const [ decimal, setDecimal ] = useState(true);
+	const [ loading, setLoading ] = useState(false);
 
-    const [weight, setWeight] = useState(70.0)
-    const [decimal, setDecimal] = useState(true)
-    const [loading, setLoading] = useState(false)
+	const get_weight = useApiCallback(apiUpdateWeight.getWeight, (data) => {
+		setWeight(parseFloat(data.weight));
+	});
+	const post_weight = useApiCallback(apiUpdateWeight.postWeight, (data) => navigation.navigate('home'));
 
-    const get_weight = useApiCallback(apiUpdateWeight.getWeight, (data) => {setWeight(parseFloat(data.weight))})
-    const post_weight = useApiCallback(apiUpdateWeight.postWeight, (data) => navigation.navigate('home'))
+	useEffect(() => {
+		get_weight.request();
+	}, []);
 
-    useEffect(() => {
+	const weightDecimals = Math.floor((weight - Math.floor(weight)) * 10);
+	var timer = null;
 
-        get_weight.request()
+	const decreaseWeight = () => {
+		setWeight(decimal ? weight - 0.1 : weight - 1);
+	};
 
-    }, [])
+	function increaseWeight() {
+		setWeight(decimal ? weight + 0.1 : weight + 1);
+	}
 
+	async function updateWeight() {
+		setLoading(true);
+		await post_weight.request(weight);
+		setLoading(false);
+		EventBus.publish(WEIGHT_MODIFIED, weight);
+	}
 
-    const weightDecimals = Math.floor(((weight - Math.floor(weight)) * 10))
-    var timer = null;
+	if (get_weight.loading || loading) return <Loading />;
 
-    const decreaseWeight = () => {
+	return (
+		<GeneralContainer>
+			<View style={{ justifyContent: 'center', marginTop: 70, alignItems: 'center' }}>
+				<Title1>
+					<Bold>¿Cuánto pesas hoy?</Bold>
+				</Title1>
+				<View
+					style={{
+						width: '100%',
+						alignItems: 'center',
+						flexDirection: 'row',
+						justifyContent: 'center',
+						marginTop: 30,
+						marginBottom: 20
+					}}
+				>
+					<TouchableOpacity style={style.iconButton} onPressIn={() => decreaseWeight()}>
+						<Feather name="minus-circle" size={25} color={PalleteColors.textSecondaryColor} />
+					</TouchableOpacity>
 
-        setWeight(decimal ? weight - 0.1 : weight - 1)
-    }
+					<TouchableOpacity onPress={() => setDecimal(false)}>
+						<Text
+							style={{
+								fontSize: decimal ? 45 : 75,
+								fontFamily: 'poppins-regular',
+								color: decimal ? PalleteColors.textSecondaryColor : PalleteColors.textPrimaryColor
+							}}
+						>
+							{Math.floor(weight)}
+						</Text>
+					</TouchableOpacity>
 
-    function increaseWeight(){
-        setWeight(decimal ? weight + 0.1 : weight + 1)
-    }
+					<TouchableOpacity onPress={() => setDecimal(true)}>
+						<Text
+							style={{
+								fontSize: !decimal ? 45 : 75,
+								fontFamily: 'poppins-regular',
+								color: !decimal ? PalleteColors.textSecondaryColor : PalleteColors.textPrimaryColor
+							}}
+						>
+							.{weightDecimals}
+						</Text>
+					</TouchableOpacity>
 
-    async function updateWeight(){
-        setLoading(true)
-        await post_weight.request(weight)
-        setLoading(false)
-        EventBus.publish(WEIGHT_MODIFIED, weight)
-    }
+					<TouchableOpacity style={style.iconButton} onPress={increaseWeight}>
+						<Feather name="plus-circle" size={25} color={PalleteColors.textSecondaryColor} />
+					</TouchableOpacity>
+				</View>
+			</View>
 
-    if(get_weight.loading || loading)
-        return <Loading></Loading>
-
-    return (
-        <GeneralContainer>
-            <View style={{justifyContent: "center", marginTop: 70, alignItems: "center"}}>
-
-                <Title1><Bold>¿Cuánto pesas hoy?</Bold></Title1>
-                <View style={{width: "100%", alignItems:"center", flexDirection: "row", justifyContent: "center", marginTop: 30, marginBottom: 20}}>
-                    <TouchableOpacity style = {style.iconButton} onPressIn={() => decreaseWeight()}>
-                        <Feather name="minus-circle" size={25} color={PalleteColors.textSecondaryColor}></Feather>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => setDecimal(false)}>
-                        <Text style={{fontSize: decimal ? 45 : 75, fontFamily: "poppins-regular", color: decimal ? PalleteColors.textSecondaryColor : PalleteColors.textPrimaryColor}}>{Math.floor(weight)}</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => setDecimal(true)}>
-                        <Text style={{fontSize: !decimal ? 45 : 75, fontFamily: "poppins-regular", color: !decimal ? PalleteColors.textSecondaryColor : PalleteColors.textPrimaryColor}}>.{ weightDecimals  }</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={style.iconButton} onPress={increaseWeight}>
-                        <Feather name="plus-circle" size={25} color={PalleteColors.textSecondaryColor}></Feather>
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-            <FormButton placeholder="Registrar" width="70%" onPress={updateWeight}></FormButton>
-        </GeneralContainer>
-);
+			<FormButton placeholder="Registrar" width="70%" onPress={updateWeight} />
+		</GeneralContainer>
+	);
 }
 
-
 const style = StyleSheet.create({
-    iconButton : {
-
-        margin: 20
-
-    }
-})
+	iconButton: {
+		margin: 20
+	}
+});
