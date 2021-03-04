@@ -22,7 +22,8 @@ export default function ExcersiseMultiple({obj}) {
 
         { obj.excersise.map((obj, i, arr) => (
             <View key={obj.id}>
-                <ImageBackground style={{marginTop: 10}} imageStyle = {{borderRadius: 20}} source={{uri: apiSettings.url + obj.image}} >
+                <ImageBackground style={{marginTop: 10}} imageStyle = {{borderRadius: 20}} source={{uri: obj.image}} >
+                    
                     <View style={{  backgroundColor: "rgba(0, 0, 0, 0.50)", borderRadius: 20,  padding: 15, flexDirection: "column"}}>
                         <TouchableOpacity
                         onPress= {

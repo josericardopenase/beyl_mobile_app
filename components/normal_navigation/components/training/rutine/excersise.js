@@ -12,7 +12,7 @@ export default function Excersise({obj}) {
 
 
     return (
-        <ImageBackground style={{marginTop: 20}} imageStyle = {{borderRadius: 20}} source={{uri: apiSettings.url + obj.excersise[0].image}} >
+        <ImageBackground style={{marginTop: 20}} imageStyle = {{borderRadius: 20}} source={{uri: obj.excersise[0].image}} >
 
             <View style={{  backgroundColor: "rgba(0, 0, 0, 0.50)", borderRadius: 20,  padding: 15, flexDirection: "column"}}>
                 <TouchableOpacity  onPress={() => setActive(!active)}>

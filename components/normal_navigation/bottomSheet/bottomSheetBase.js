@@ -20,10 +20,6 @@ export default function BottomSheetBase({sheetRef}) {
 
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-  useEffect(() => {
-
-    console.log(open)
-  }, [open])
 
   const height = Dimensions.get('window').height/1.2
 

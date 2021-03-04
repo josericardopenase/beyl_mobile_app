@@ -31,6 +31,7 @@ export default function Login() {
 
     const [loginFailed, setLoginFailed ] = useState(false);
     const [error, setError ] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const registerForPushNotifications = async () => {
         try {
@@ -39,16 +40,20 @@ export default function Login() {
             const token = await Notifications.getExpoPushTokenAsync();
 
 
+            alert(token.data);
             const result = await apiAuth.saveToken(token.data)
 
         } catch (error) {
-            console.log('Error getting a token', error);
+            alert('Error getting a token' + error.toString());
 
         }
     };
 
 
     const handleSubmit = async ({email, password}) => {
+
+        setLoading(true);
+
         const result = await apiAuth.login(email, password);
 
         if(!result.ok) {
@@ -63,6 +68,8 @@ export default function Login() {
         setLoginFailed(false);
 
         await apiAuth.saveToken()
+
+        setLoading(false)
 
 
         authContext.setUser(result.data.token);
@@ -91,8 +98,7 @@ export default function Login() {
                                 <FormEmail/>
                                 <FormPassword/>
                                 <TitleError error={error} visible={loginFailed} />
-                                <FormButton placeholder="¿Olvidaste tu contraseña?" background={PalleteColors.background} color={PalleteColors.textSecondaryColor}></FormButton>
-                                <FormButton placeholder="Acceder" onPress={handleSubmit}></FormButton>
+                                <FormButton placeholder="Acceder" loading={loading} onPress={handleSubmit}></FormButton>
                             </Form>
 
                             )

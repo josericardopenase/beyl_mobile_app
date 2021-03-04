@@ -21,8 +21,6 @@ export default function Food(props) {
         }
     })
 
-    console.log(props.obj)
-
     return (
         <View style = {styles.container}>
 

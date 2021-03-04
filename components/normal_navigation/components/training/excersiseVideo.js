@@ -9,8 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function ExcersiseVideo(props) {
 
 
-    const video = apiSettings.url + props.route.params.video;
-    console.log(video)
+    const video =  props.route.params.video;
     // Later on in your styles..
     var styles = StyleSheet.create({
     backgroundVideo: {

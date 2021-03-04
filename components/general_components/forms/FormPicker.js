@@ -8,10 +8,10 @@ import Title5 from '../titles/title5'
 import { useFormikContext } from 'formik'
 import TitleError from '../titles/titleError'
 
-export default function FormPicker({placeholder, icon, secureTextEntry, options, name, ...otherProps}) {
+export default function FormPicker({placeholder, icon, secureTextEntry, options, name, defaultValue, ...otherProps}) {
 
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(defaultValue ? {label : defaultValue} : null);
 
     const {setFieldTouched, handleChange, errors, touched, setFieldValue} = useFormikContext();
 

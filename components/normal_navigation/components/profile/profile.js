@@ -16,14 +16,15 @@ import ProfileDetailInfo from './components/profileDetailInfo'
 import ProfileImageInfo from './components/profileImageInfo'
 import EventBus from 'eventing-bus';
 import ProgressSnippet from '../progress/progressSnippet'
+import { MODIFIED_PROFILE } from '../../../../events/events'
 
 export default function Profile() {
     
     const [profile, setProfile] = useState(null);
     const getProfile = useApiCallback(apiProfile.getProfile, (data) => setProfile(data))
 
-
-
+    EventBus.on(MODIFIED_PROFILE,  (data) => getProfile.request())
+    
     useEffect(() => {
         getProfile.request()
     }, [])
@@ -31,6 +32,7 @@ export default function Profile() {
     if(getProfile.loading){
         return <Loading></Loading>
     }
+
 
     return (
         <ScrollView style={{marginBottom: 30}}>

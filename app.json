@@ -29,6 +29,7 @@
     },
     "android": {
       "icon": "./assets/beyl.png",
+      "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
       "package": "com.josericardopeanse.beylapp"
     },

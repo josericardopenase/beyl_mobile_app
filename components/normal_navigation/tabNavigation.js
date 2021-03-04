@@ -18,6 +18,9 @@ import useProfile from '../../auth/useProfile';
 import apiProfile from '../../api/apiProfile';
 import ProgressHistory from './components/progress/progressHistory';
 import * as Permissions from 'expo-permissions';
+import JoinTrainer from './components/profile/joinTrainer';
+import SettingsAccount from './components/profile/settings/settingsAccount';
+import SettingsProfile from './components/profile/settings/settingsProfile';
 
 const Stack = createStackNavigator();
 
@@ -142,6 +145,34 @@ export default function TabNavigation() {
             cardStyle: {backgroundColor: PalleteColors.backgroundSecondary},
             
     }}  />
+    <Stack.Screen name="JoinTrainer" component={JoinTrainer} options={{
+            headerTitle: "Unirse a un entrenador",
+            gestureEnabled: true,
+            cardStyle: {backgroundColor: PalleteColors.background},
+            
+    }}  />
+    <Stack.Screen name="AccountSettings" component={SettingsAccount} options={{
+            headerTitle: "Editar cuenta",
+            cardStyle: {backgroundColor: PalleteColors.background},
+            
+           headerTitleStyle: {
+              alignSelf: "flex-start",
+              fontFamily: "poppins-bold",
+              fontSize: 15
+            },
+    }}  />
+
+    <Stack.Screen name="ProfileSettings" component={SettingsProfile} options={{
+            headerTitle: "Editar perfil",
+            cardStyle: {backgroundColor: PalleteColors.background},
+            
+           headerTitleStyle: {
+              alignSelf: "flex-start",
+              fontFamily: "poppins-bold",
+              fontSize: 15
+            },
+    }}  />
     </Stack.Navigator>
+
   );
 }

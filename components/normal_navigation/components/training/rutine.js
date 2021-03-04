@@ -20,7 +20,12 @@ export default function Rutine() {
 		setDay(undefined);
 	});
 
-	const dayData = useApiCallback(apiClientRutine.getRutineDay, (data) => setRefreshing(false));
+	const dayData = useApiCallback(apiClientRutine.getRutineDay, (data) => {
+		console.log(day)
+		console.log(rutine.data)
+		console.log(rutine.error)
+		setRefreshing(false)
+	});
 	const [ day, setDay ] = useState();
 	const [ refreshing, setRefreshing ] = useState(false);
 
@@ -29,16 +34,22 @@ export default function Rutine() {
 
 	useEffect(() => {
 		notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
+
 			const data = notification.request.content.data;
 
 			if (data) {
 				if (data.action === 'reloadRutine') {
+
 					rutine.request();
+
 					if (day != undefined) {
 						dayData.request(day);
 					}
+
 				}
 			}
+
+
 		});
 
 		rutine.request();

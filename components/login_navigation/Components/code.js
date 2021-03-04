@@ -26,12 +26,18 @@ export default function Code() {
     const [failed, setFailed] = useState(false)
     const [modal, setModal] = useState(false)
     const [information, setInformation] = useState()
+    const [loading, setLoading] = useState(false)
 
     const navigation = useNavigation();
 
 
     const handleSubmit = async({key}) => {
+
+        setLoading(true);
+
         const result = await apiInvitationKey.validate(key)
+
+        setLoading(false);
 
         if(!result.ok){
             setFailed(true)
@@ -54,7 +60,7 @@ export default function Code() {
                             ({handleSubmit}) => (
                                 <Form style={{marginTop: 0}}>
                                     <FormCompleteInput name="key" placeholder="Código de entrenador" icon="qrcode"></FormCompleteInput>
-                                    <FormButton placeholder="Validar código" onPress={handleSubmit}></FormButton>
+                                    <FormButton loading={loading} placeholder="Validar código" onPress={handleSubmit}></FormButton>
                                     <TitleError error={error} visible={failed}></TitleError>
                                 
                                 </Form>
@@ -76,7 +82,7 @@ export default function Code() {
                                     <View style={{alignItems: "center"}}>
                                         <Title5>code : {information.key}</Title5>
                                         <Title1 primary={true}><Bold>{information.trainer.user.first_name + " "  + information.trainer.user.last_name}</Bold></Title1>
-                                        <Image style={{width: 300, height: 200, borderRadius: 10, marginTop: 10, marginBottom: 10}} source={{uri: apiSettings.url + information.trainer.user.profile_pic}}></Image>
+                                        <Image style={{width: 300, height: 200, borderRadius: 10, marginTop: 10, marginBottom: 10}} source={{uri: information.trainer.user.profile_pic}}></Image>
 
                                     </View>
                                     <TouchableOpacity onPress={() => {navigation.navigate("Register", information); setModal(false);}}>

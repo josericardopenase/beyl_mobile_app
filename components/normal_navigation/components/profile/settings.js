@@ -25,8 +25,8 @@ export default function Settings() {
         <GeneralContainer>
             <View style={{marginTop: 20, marginBottom: 20}}>
 
-                <SettingOption icon="user-circle"> Cuenta</SettingOption>
-                <SettingOption icon="fish">Alergias</SettingOption>
+                <SettingOption icon="cog" page="AccountSettings"> Cuenta</SettingOption>
+                <SettingOption icon="user-circle" page="ProfileSettings">Pérfil</SettingOption>
 
             </View>
             <TouchableOpacity onPress={()=> logOut()}>

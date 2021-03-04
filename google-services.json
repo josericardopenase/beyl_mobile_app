@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159244448399",
+    "project_id": "beyl-a4538",
+    "storage_bucket": "beyl-a4538.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159244448399:android:2030b5ca86a07fc265b6fa",
+        "android_client_info": {
+          "package_name": "com.beyl.beyl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159244448399-d6acq3qa255tn3vd5d3ja0hs9vok3igm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPEbFEAIZyoDo_A2wOMdRWmkVS46p_4MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159244448399-d6acq3qa255tn3vd5d3ja0hs9vok3igm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

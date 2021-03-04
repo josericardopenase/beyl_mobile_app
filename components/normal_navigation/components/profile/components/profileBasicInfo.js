@@ -16,7 +16,7 @@ export default function ProfileBasicInfo({user}) {
     return (
         <View style={styles.profile}>
 
-        <ProfileImage size={90} url={apiSettings.url + user.profile_pic}></ProfileImage>
+        <ProfileImage size={90} url={user.profile_pic}></ProfileImage>
 
         <View style={styles.profileInfo}>
 

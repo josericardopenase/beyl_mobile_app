@@ -11,6 +11,7 @@ import apiProfile from './api/apiProfile';
 import ProfileContext from './auth/profileContext';
 import PalleteColors from './components/general_components/palleteColors';
 import { StatusBar } from 'expo-status-bar';
+import Code from './components/login_navigation/Components/code';
 
 export default function App() {
 	const [ user, setUser ] = useState();

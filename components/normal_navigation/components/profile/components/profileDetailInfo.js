@@ -8,7 +8,7 @@ import Bold from '../../../../general_components/titles/bold'
 import Title3 from '../../../../general_components/titles/title3'
 import ProfileInformationComponent from './profileInformationComponent'
 import EventBus from 'eventing-bus'
-import { WEIGHT_MODIFIED } from '../../../../../events/events'
+import { ADDED_TRAINER, WEIGHT_MODIFIED } from '../../../../../events/events'
 import TrainerInformation from './trainerInformation'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -17,10 +17,12 @@ import { getIn } from 'formik'
 export default function ProfileDetailInfo() {
 
     const [information, setInformation] = useState(null);
-    const getInformation = useApiCallback(apiProfile.getProfileAthlete, (data) => setInformation(data))
+    const getInformation = useApiCallback(apiProfile.getProfileAthlete, (data) => {setInformation(data);})
     const navigation = useNavigation();
 
-    EventBus.on(WEIGHT_MODIFIED, (data) => setInformation({...information, weight: data}))
+    EventBus.on(WEIGHT_MODIFIED,  (data) => setInformation({...information, weight: data}))
+    EventBus.on(ADDED_TRAINER,  (data) => getInformation.loading ? null : getInformation.request())
+
 
 
     useEffect(() => {
@@ -31,12 +33,15 @@ export default function ProfileDetailInfo() {
         return <Loading></Loading>
     }
 
-    console.log(getInformation)
-    
     return (
         <>
             <BoxContainer title="Tu entrenador:">
-                <TrainerInformation trainer={getInformation.data.trainer.user}></TrainerInformation>
+                {
+                    getInformation.data.trainer ?
+                    <TrainerInformation trainer={getInformation.data.trainer.user}></TrainerInformation>
+                    :
+                    <TrainerInformation trainer={null}></TrainerInformation>
+                }
             </BoxContainer>
             <BoxContainer title="Tus datos actuales:">
 
@@ -45,7 +50,7 @@ export default function ProfileDetailInfo() {
 
                     <ProfileInformationComponent icon = "weight-kilogram" data= {Math.floor(information.weight*10)/10 + " kg"} title="peso" onPress={() => navigation.push("Progress")}></ProfileInformationComponent>
                     <ProfileInformationComponent icon = "human-male-height" data = {information.height +" m"} title="altura"></ProfileInformationComponent>
-                    <ProfileInformationComponent icon = "account-heart" data = {information.fat + " %"} title="grasa corporal"></ProfileInformationComponent>
+                    <ProfileInformationComponent icon = "soccer" data = {information.amount_excersise} title="Actividad fisica"></ProfileInformationComponent>
 
                 </View>
             </BoxContainer>

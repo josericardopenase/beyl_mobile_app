@@ -1,6 +1,6 @@
 
 const apiSettings = {
-   url: 'http://192.168.0.14:9000'
+   url: 'https://beyl-api.herokuapp.com'
 }
 
 export default apiSettings;

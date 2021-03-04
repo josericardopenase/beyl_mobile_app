@@ -23,7 +23,7 @@ export default function recipeDetail(props) {
     if(recipe.loading){
         return <Loading></Loading>
     }
-    console.log(recipe.data)
+
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <Image style={{width: "100%", height: 360}} source={{uri: apiSettings.url + recipe.data.image}}></Image>

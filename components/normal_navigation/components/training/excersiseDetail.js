@@ -34,7 +34,6 @@ export default function ExcersiseDetail(props) {
         return <Loading></Loading>
     }
 
-    console.log(excersise.data)
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <Image style={{width: "100%", height: 410}} source={{uri:  excersise.data.image}}></Image>
@@ -54,8 +53,6 @@ export default function ExcersiseDetail(props) {
                     <ExcersiseBlockPuntuation puntuation={excersise.data.difficult}></ExcersiseBlockPuntuation>
 
                     <ExcersiseBlockMuscles muscles = {excersise.data.muscles}></ExcersiseBlockMuscles>
-
-                    <ExcersiseBlockDescription description={excersise.data.description}></ExcersiseBlockDescription>
 
                 </GeneralContainer>
             </View>

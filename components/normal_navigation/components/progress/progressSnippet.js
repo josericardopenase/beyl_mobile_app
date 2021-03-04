@@ -22,7 +22,6 @@ export default function ProgressSnippet() {
 
     EventBus.on(ADDED_ACTIVITIE, (data) =>{
         setActivities([data, ...activities.filter((item , index)=> index !== 0)])
-        console.log(activities)
     }) 
 
     useEffect(() => {

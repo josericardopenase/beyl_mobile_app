@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var apiSettings = {
-  url: 'http://192.168.0.14:9000'
+  url: 'https://beyl-api.herokuapp.com'
 };
 var _default = apiSettings;
 exports["default"] = _default;

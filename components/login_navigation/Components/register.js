@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 import { ScrollView, TextInput } from 'react-native-gesture-handler'
 import Form from '../../general_components/form'
@@ -31,11 +31,11 @@ const validationSchema = Yup.object().shape({
     surname: Yup.string().required().label("Apellidos"),
     height: Yup.number("Tiene que ser un número").required().min(100).max(300).label("Altura"),
     weight: Yup.number("Tiene que ser un número").required().min(10).max(250).label("Peso"),
-    sex: Yup.string().required().oneOf(['Hombre', 'Mujer', 'Otro']).label("Sexo"),
+    sex: Yup.string().required().oneOf(["hombre", "mujer"]).label("Sexo"),
     key: Yup.string().required().label("Clave de entrenador"),
     alergias: Yup.string().optional().label("Alergias"),
     born_date: Yup.string().required().label("Fecha de nacimiento"),
-    sport: Yup.string().required().label("Actividad física") 
+    amount_excersise: Yup.string().required().label("Actividad física") 
 
 })
 
@@ -65,7 +65,9 @@ export default function Register(props) {
     };
 
 
+
     const handleSubmit = async (values) => {
+
         const result = await apiAuth.register(values);
 
         if(!result.ok) {
@@ -95,12 +97,12 @@ export default function Register(props) {
             <Title1><Bold>Registrate</Bold> en beyl</Title1>
             <View style={{marginTop: 20}}>
                     <Formik 
-                    initialValues={{email: '', password: '', name : '', surname: '', height: '', weight: '', sex: '', key: props.route.params.key, alergias: '', born_date: '', sport: ''}}
+                    initialValues={{email: '', password: '', name : '', surname: '', height: '', weight: '', sex: '', key: props.route.params.key, alergias: '', born_date: '', amount_excersise: ''}}
                     validationSchema={validationSchema}
                     onSubmit={values => handleSubmit(values)}
                     >
                     {
-                        ({handleSubmit}) => (
+                        ({handleSubmit, errors}) => (
                         <Form>
                             <Title3 style={{marginBottom: 20}}>Información básica</Title3>
                             <FormEmail></FormEmail>
@@ -114,12 +116,12 @@ export default function Register(props) {
                             <Title3 style={{marginTop: 30}}>Datos físicos</Title3>
                             <FormCompleteInput name="height" placeholder="Altura en cm" icon="altimeter"></FormCompleteInput>
                             <FormCompleteInput name="weight" placeholder="Peso en kg" icon="weight-gram"></FormCompleteInput>
-                            <FormPicker name="sport" placeholder={"Actividad física"} icon="gender-male-female" options={[{label: "Poco o ningún ejercicio", value: 1.2}, {label: "Ejercicio ligero (1-3 días a la semana)", value: 1.375}, {label: "Ejercicio moderado (3-5 días a la semana)", value: "Otro"},{label: "Ejercicio fuerte (6-7 días a la semana)", value: 1.725}, {label: "Ejercicio muy fuerte (dos veces al día)", value:  1.9} ]}></FormPicker>
-                            <FormPicker name="sex" placeholder={"sexo"} icon="gender-male-female" options={[{label: "Hombre", value: "Hombre"}, {label: "Mujer", value: "Mujer"}, {label: "Otro", value: "Otro"}]}></FormPicker>
+                            <FormPicker name="amount_excersise" placeholder={"Actividad física"} icon="gender-male-female" options={[{label: "Poco o ningún ejercicio", value: "NE"}, {label: "Ejercicio ligero (1-3 días a la semana)", value: "EL"}, {label: "Ejercicio moderado (3-5 días a la semana)", value: "EM"},{label: "Ejercicio fuerte (6-7 días a la semana)", value: "EF"}, {label: "Ejercicio muy fuerte (dos veces al día)", value:  "EMF"} ]}></FormPicker>
+                            <FormPicker name="sex" placeholder={"sexo"} icon="gender-male-female" options={[{label: "Hombre", value: "hombre"}, {label: "Mujer", value: "mujer"}]}></FormPicker>
                             <FormCompleteInput name="alergias" placeholder="Alergias" icon="food"></FormCompleteInput>
                             <TitleError error={error} visible={loginFailed} />
                             
-                            <FormButton placeholder="Vamos alla!" onPress={handleSubmit}></FormButton>
+                            <FormButton placeholder="Vamos alla!" onPress={() => {handleSubmit();}}></FormButton>
                         </Form>
                         )
                     }
