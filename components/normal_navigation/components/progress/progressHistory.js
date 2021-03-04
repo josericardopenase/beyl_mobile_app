@@ -26,7 +26,7 @@ export default function ProgressHistory() {
 
 
             {
-            results.length > 1 ?
+            results.length > 0 ?
             <>
                 <FlatList
                     data={results} 

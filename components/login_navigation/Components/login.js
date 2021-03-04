@@ -39,12 +39,9 @@ export default function Login() {
             if (!permission.granted) return;
             const token = await Notifications.getExpoPushTokenAsync();
 
-
-            alert(token.data);
             const result = await apiAuth.saveToken(token.data)
 
         } catch (error) {
-            alert('Error getting a token' + error.toString());
 
         }
     };

@@ -31,7 +31,7 @@
       "icon": "./assets/beyl.png",
       "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
-      "package": "com.josericardopeanse.beylapp"
+      "package": "com.beyl.beyl"
     },
     "notification": {
       "icon": "./assets/beyl.png",
