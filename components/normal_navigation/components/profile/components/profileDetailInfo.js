@@ -31,10 +31,28 @@ export default function ProfileDetailInfo() {
         return () => {
             EventBus.unregisterAllCallbacks()
         }
+
     }, [])
 
     if(getInformation.loading){
         return <Loading></Loading>
+    }
+
+    function getActivityLevel(activitie){
+
+        switch(activitie){
+            case 'ne':
+                return "ninguna";
+            case 'el':
+                return "poca";
+            case 'em':
+                return "media";
+            case 'ef':
+                return "alta";
+            case 'emf':
+                return "muy alta";
+        }
+
     }
 
 
@@ -56,7 +74,7 @@ export default function ProfileDetailInfo() {
 
                     <ProfileInformationComponent icon = "weight-kilogram" data= {Math.floor(information.weight*10)/10 + " kg"} title="peso" onPress={() => navigation.push("Progress")}></ProfileInformationComponent>
                     <ProfileInformationComponent icon = "human-male-height" data = {information.height +" m"} title="altura"></ProfileInformationComponent>
-                    <ProfileInformationComponent icon = "soccer" data = {information.amount_excersise} title="Actividad fisica"></ProfileInformationComponent>
+                    <ProfileInformationComponent icon = "soccer" data = {getActivityLevel(information.amount_excersise)} title="Actividad fisica"></ProfileInformationComponent>
 
                 </View>
             </BoxContainer>

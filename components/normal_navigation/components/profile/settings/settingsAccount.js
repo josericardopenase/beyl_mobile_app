@@ -53,14 +53,21 @@ export default function SettingsAccount() {
 
         const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL)
 
-        if(!granted)
+        if(!result.granted)
             alert('Necesitas activar la camara para cambiar la imagen de perfil.')
+
+        return result.granted;
 
     }
 
     const selectImage = async (setFieldValue) => {
         try{
 
+            const granted = requestPermission();
+
+            if(!granted)
+                return;
+                
             const result = await ImagePicker.launchImageLibraryAsync({base64: true, quality: 0.8, aspect: [1,1], allowsEditing: true});
 
             if(!result.cancelled){
@@ -84,7 +91,6 @@ export default function SettingsAccount() {
 
     useEffect(() => {
         getProfile.request()
-        requestPermission();
     }, [])
 
      if(getProfile.loading ) {
