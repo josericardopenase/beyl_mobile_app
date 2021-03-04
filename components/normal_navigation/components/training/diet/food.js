@@ -24,13 +24,13 @@ export default function Food(props) {
     return (
         <View style = {styles.container}>
 
-            <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{flexDirection: "row", alignItems: "center", flex:5}}>
 
                 <Text style={{marginLeft: 10, fontFamily: "poppins-regular", fontSize: 15, color: PalleteColors.textPrimaryColor}}>{props.obj.food.name}</Text>
 
             </View>
 
-            <Text style={{color: PalleteColors.textPrimaryColor}}>{props.obj.portion_cuantity} {props.obj.portion_unity}</Text>
+            <Text style={{color: PalleteColors.textPrimaryColor, flex: 1}}>{props.obj.portion_cuantity} {props.obj.portion_unity}</Text>
 
         </View>
     )

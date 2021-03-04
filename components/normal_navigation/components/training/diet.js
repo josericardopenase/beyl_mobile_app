@@ -1,7 +1,7 @@
 import { Picker } from '@react-native-community/picker'
 import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, RefreshControl } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native'
 import apiClientDiet from '../../../../api/apiClientDiet'
 import useApi from '../../../../customHooks/useApi'
 import useApiCallback from '../../../../customHooks/useApiCallback'

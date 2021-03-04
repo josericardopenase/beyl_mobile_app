@@ -28,9 +28,7 @@ export default function Profile() {
     useEffect(() => {
         getProfile.request()
 
-        return () => {
-            EventBus.unregisterAllCallbacks()
-        }
+
 
     }, [])
 

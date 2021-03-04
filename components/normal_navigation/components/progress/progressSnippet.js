@@ -30,10 +30,6 @@ export default function ProgressSnippet() {
 
         getActivitie.request();
 
-        return (
-            EventBus.unregisterAllCallbacks()
-        )
-
     }, [])
 
 

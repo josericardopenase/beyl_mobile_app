@@ -43,7 +43,6 @@ export default function ActivitieProgress(props) {
     const post_general_history = useApiCallback(apiGeneralHistory.postHistory, (data) => {
         EventBus.publish(ADDED_ACTIVITIE, data);
         navigation.navigate("Home")
-
     })
     const [error, setError] = useState(false)
 

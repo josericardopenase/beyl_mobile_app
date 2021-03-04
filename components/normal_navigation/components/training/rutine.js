@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, SafeAreaView, RefreshControl } from 'react-native';
 import {Picker} from '@react-native-community/picker'
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native';
+
 import apiClientRutine from '../../../../api/apiClientRutine';
 import useApiCallback from '../../../../customHooks/useApiCallback';
 import GeneralContainer from '../../../general_components/generalContainer';
@@ -14,6 +15,7 @@ import ErrorApi from '../../../general_components/error_handling/errorApi';
 import * as Notifications from 'expo-notifications';
 
 export default function Rutine() {
+
 	const rutine = useApiCallback(apiClientRutine.getRutine, (data) => {
 		if (data.rutine_days !== undefined) if (data.rutine_days.length > 0) if(data.rutine_days[0] !== undefined) return setDay(data.rutine_days[0].id);
 
@@ -21,16 +23,13 @@ export default function Rutine() {
 	});
 
 	const dayData = useApiCallback(apiClientRutine.getRutineDay, (data) => {
-		console.log(day)
-		console.log(rutine.data)
-		console.log(rutine.error)
 		setRefreshing(false)
 	});
+
 	const [ day, setDay ] = useState();
 	const [ refreshing, setRefreshing ] = useState(false);
 
 	const notificationListener = useRef();
-	const responseListener = useRef();
 
 	useEffect(() => {
 		notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
@@ -80,35 +79,49 @@ export default function Rutine() {
 
 	if (!rutine.loading && !dayData.loading) {
 		return (
-			<ScrollView
-				showsVerticalScrollIndicator={false}
-				refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-			>
 				<GeneralContainer style={{ marginBottom: 70 }}>
-					<View
-						style={{
-							backgroundColor: PalleteColors.mainColor,
-							color: 'white',
-							borderRadius: 10,
-							marginTop: 15
-						}}
-					>
-						<Picker
-							style={{ color: 'white', fontFamily: 'poppins-regular' }}
-							selectedValue={day}
-							onValueChange={(itemValue, itemIndex) => setDay(itemValue)}
-						>
-							{rutine.data.rutine_days.map((obj) => (
-								<Picker.Item key={obj.id} label={obj.name} value={obj.id} />
-							))}
-						</Picker>
-					</View>
 
-					{dayData.loading ? null : dayData.data.rutine_groups ? (
+{/* 					{dayData.loading ? null : dayData.data.rutine_groups ? (
 						dayData.data.rutine_groups.map((obj) => <ExcersiseGroup key={obj.id} obj={obj} />)
-					) : null}
+					) : null} */}
+
+ 					{dayData.loading ? null : dayData.data.rutine_groups ? (
+
+					<FlatList
+						ListHeaderComponent={
+							<View
+								style={{
+									backgroundColor: PalleteColors.mainColor,
+									color: 'white',
+									borderRadius: 10,
+									marginTop: 15
+								}}
+							>
+								<Picker
+									style={{ color: 'white', fontFamily: 'poppins-regular' }}
+									selectedValue={day}
+									onValueChange={(itemValue, itemIndex) => setDay(itemValue)}
+								>
+									{rutine.data.rutine_days.map((obj) => (
+										<Picker.Item key={obj.id} label={obj.name} value={obj.id} />
+									))}
+								</Picker>
+							</View>
+						}
+						data = {dayData.data.rutine_groups}
+						renderItem={({item}) =><ExcersiseGroup obj={item}></ExcersiseGroup>}
+						keyExtractor={item => item.id}
+						refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+						refreshing={refreshing}
+						onRefresh={onRefresh}
+						showsVerticalScrollIndicator={false}
+						></FlatList>
+
+					) : null} 
+
+
 				</GeneralContainer>
-			</ScrollView>
+
 		);
 	} else {
 		return <Loading />;

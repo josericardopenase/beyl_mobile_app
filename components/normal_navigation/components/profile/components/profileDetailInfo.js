@@ -28,10 +28,6 @@ export default function ProfileDetailInfo() {
 
         getInformation.request();
 
-        return () => {
-            EventBus.unregisterAllCallbacks()
-        }
-
     }, [])
 
     if(getInformation.loading){
