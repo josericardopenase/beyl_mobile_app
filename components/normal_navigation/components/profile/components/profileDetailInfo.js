@@ -20,18 +20,24 @@ export default function ProfileDetailInfo() {
     const getInformation = useApiCallback(apiProfile.getProfileAthlete, (data) => {setInformation(data);})
     const navigation = useNavigation();
 
+
     EventBus.on(WEIGHT_MODIFIED,  (data) => setInformation({...information, weight: data}))
     EventBus.on(ADDED_TRAINER,  (data) => getInformation.loading ? null : getInformation.request())
 
-
-
     useEffect(() => {
+
         getInformation.request();
+
+        return () => {
+            EventBus.unregisterAllCallbacks()
+        }
     }, [])
 
     if(getInformation.loading){
         return <Loading></Loading>
     }
+
+
 
     return (
         <>

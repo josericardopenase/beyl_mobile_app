@@ -41,9 +41,9 @@ export default function SettingsAccount() {
     const navigation = useNavigation();
     const getProfile = useApiCallback(apiProfile.getProfile, (data) => setProfile(data))
     const modifyProfile = useApiCallback(apiProfile.modifyProfile, (data) => {
-        setLoading(false)
         EventBus.publish(MODIFIED_PROFILE)
         navigation.navigate("Settings")
+
     })
 
     const [loading, setLoading] = useState(false);
@@ -113,7 +113,7 @@ export default function SettingsAccount() {
                             <FormCompleteInput  defaultValue={profile.first_name} name="first_name" initialValue={getProfile.data.email} placeholder="Nombre" icon="account"></FormCompleteInput>
                             <FormCompleteInput defaultValue={profile.last_name} name="last_name" placeholder="Apellidos" icon="account"></FormCompleteInput>
                             
-                            <FormButton placeholder="Guardar"  loading={loading} onPress={() => {handleSubmit();}}></FormButton>
+                            <FormButton placeholder="Guardar"  loading={loading} onPress={() => {if(!loading) handleSubmit();}}></FormButton>
                         </Form>
                         )
                     }

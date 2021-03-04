@@ -24,10 +24,16 @@ export default function Profile() {
     const getProfile = useApiCallback(apiProfile.getProfile, (data) => setProfile(data))
 
     EventBus.on(MODIFIED_PROFILE,  (data) => getProfile.request())
-    
+
     useEffect(() => {
         getProfile.request()
+
+        return () => {
+            EventBus.unregisterAllCallbacks()
+        }
+
     }, [])
+
 
     if(getProfile.loading){
         return <Loading></Loading>

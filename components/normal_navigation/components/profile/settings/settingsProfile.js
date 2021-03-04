@@ -46,20 +46,19 @@ export default function SettingsProfile() {
     const navigation = useNavigation();
     const getInformation = useApi(apiProfile.getProfileAthlete)
     const [loading, setLoading] = useState(false);
+
+
+
     const modifyProfile = useApiCallback(apiProfile.modifyProfileAthlete, (data) => {
-        setLoading(false)
+
         EventBus.publish(MODIFIED_PROFILE)
         navigation.navigate("Settings")
     })
 
 
     const handleSubmit = (values) => {
-
-        setLoading(true);
-        modifyProfile.request(values)
-        console.log(modifyProfile.data)
-        console.log(modifyProfile.error)
-
+            setLoading(true);
+            modifyProfile.request(values)
     }
 
 
@@ -79,7 +78,7 @@ export default function SettingsProfile() {
 
             <View style={{marginTop: 20}}>
                     <Formik 
-                    initialValues={{ height: getInformation.data.height, sexo: getInformation.data.sexo, alergias: getInformation.data.alergias, born_date: getInformation.data.born_date, amount_excersise: getInformation.data.amount_excersise}}
+                    initialValues={{ height: getInformation.data.height, sexo: getInformation.data.sexo, alergias: getInformation.data.alergias, born_date: getInformation.data.born_date, amount_excersise: getInformation.data.amount_excersise.toLowerCase()}}
                     onSubmit={values => handleSubmit(values)}
                     >
 
@@ -92,7 +91,7 @@ export default function SettingsProfile() {
                             <FormCompleteInput defaultValue={getInformation.data.alergias} name="alergias" placeholder="Alergias" icon="food"></FormCompleteInput>
                             <TitleError error={modifyProfile.error.toString()} visible={modifyProfile.error ? true : false} />
                             
-                            <FormButton placeholder="Vamos alla!" loading={loading} onPress={() => {handleSubmit();}}></FormButton>
+                            <FormButton placeholder="Guardar" loading={loading} onPress={() => {if(!loading) handleSubmit();}}></FormButton>
                         </Form>
                         )
                     }

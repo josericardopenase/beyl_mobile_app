@@ -38,13 +38,17 @@ export default function ActivitieProgress(props) {
 
     const data = props.route.params
 
+    const [loading, setLoading] = useState(false);
+
     const post_general_history = useApiCallback(apiGeneralHistory.postHistory, (data) => {
         EventBus.publish(ADDED_ACTIVITIE, data);
         navigation.navigate("Home")
+
     })
     const [error, setError] = useState(false)
 
     const sendInformation = async ({date, time, name, has_distance,  distance}) => {
+        setLoading(true)
         await post_general_history.request(date, time, name, has_distance, distance)
 
     }
@@ -72,7 +76,7 @@ export default function ActivitieProgress(props) {
                                     <FormDateTimePicker name="date" placeholder = "Fecha" mode="date" first></FormDateTimePicker>
                                     <FormDateTimePicker name="time" placeholder ="Time" mode = "time"></FormDateTimePicker>
                                     <TitleError error={"Ha ocurrido un error"} visible={post_general_history.error}></TitleError>
-                                    <FormButton placeholder="Registrar" onPress={handleSubmit}></FormButton>
+                                    <FormButton placeholder="Registrar" loading={loading} onPress={handleSubmit}></FormButton>
                                 </Form>
 
                             )

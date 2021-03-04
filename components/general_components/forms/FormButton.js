@@ -12,7 +12,7 @@ export default function FormButton({background, placeholder, color, icon, onPres
                                   marginTop: 15,
                                   flexDirection: "row",
                                   width: "100%",
-                                  justifyContent: "center"}} onPress={() => onPress()}>
+                                  justifyContent: "center"}} onPress={() => loading ? null : onPress()}>
             {
                 icon
             }

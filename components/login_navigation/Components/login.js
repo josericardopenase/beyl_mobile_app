@@ -53,6 +53,8 @@ export default function Login() {
 
         const result = await apiAuth.login(email, password);
 
+        setLoading(false)
+
         if(!result.ok) {
             if(result.data.non_field_errors != undefined)
                 setError(result.data.non_field_errors[0]);
@@ -66,7 +68,6 @@ export default function Login() {
 
         await apiAuth.saveToken()
 
-        setLoading(false)
 
 
         authContext.setUser(result.data.token);

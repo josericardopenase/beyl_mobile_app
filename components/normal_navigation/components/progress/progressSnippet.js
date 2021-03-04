@@ -20,12 +20,20 @@ export default function ProgressSnippet() {
     const [activities, setActivities] = useState([]);
     const navigation = useNavigation();
 
+
+
     EventBus.on(ADDED_ACTIVITIE, (data) =>{
         setActivities([data, ...activities.filter((item , index)=> index !== 0)])
     }) 
 
     useEffect(() => {
+
         getActivitie.request();
+
+        return (
+            EventBus.unregisterAllCallbacks()
+        )
+
     }, [])
 
 
