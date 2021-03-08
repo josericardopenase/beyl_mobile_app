@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     container: {
         padding: 15,
         backgroundColor: PalleteColors.background,
-        borderRadius: 10,
+        borderRadius: 15,
         marginTop: 20
 
     },
     image: {
         width: "100%",
-        height: 200,
+        height: 300,
         borderRadius: 10,
         marginBottom: 10
     }

@@ -55,6 +55,7 @@ export default function Login() {
 
         setLoading(false)
 
+
         if(!result.ok) {
             if(result.data.non_field_errors != undefined)
                 setError(result.data.non_field_errors[0]);

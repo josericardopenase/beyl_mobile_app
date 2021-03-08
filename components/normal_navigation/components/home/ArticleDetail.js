@@ -7,6 +7,7 @@ import Bold from '../../../general_components/titles/bold'
 import Title1 from '../../../general_components/titles/title2'
 import Title5 from '../../../general_components/titles/title5'
 import HTMLView from 'react-native-htmlview';
+import Title3 from '../../../general_components/titles/title3'
 
 export default function ArticleDetail(props) {
 
@@ -20,7 +21,7 @@ export default function ArticleDetail(props) {
                 style={styles.image}
                 source={{uri: obj.image}}>
                 </Image>
-                <HTMLView value={obj.texto} stylesheet={htmlStyles} />
+                <Title3>obj.texto</Title3>
                     
             </ScrollView>
         </GeneralContainer>
