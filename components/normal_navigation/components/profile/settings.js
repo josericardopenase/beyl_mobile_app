@@ -25,12 +25,12 @@ export default function Settings() {
         <GeneralContainer>
             <View style={{marginTop: 20, marginBottom: 20}}>
 
-                <SettingOption icon="cog" page="AccountSettings"> Cuenta</SettingOption>
-                <SettingOption icon="user-circle" page="ProfileSettings">Pérfil</SettingOption>
+                <SettingOption icon="cog" page="AccountSettings">Cuenta</SettingOption>
+                <SettingOption icon="user-circle" page="ProfileSettings">Perfil</SettingOption>
 
             </View>
             <TouchableOpacity onPress={()=> logOut()}>
-                <Title3 color="#ffc600"><Bold>Cerrar sesion</Bold></Title3>
+                <Title3 color="#ffc600"><Bold>Cerrar sesión</Bold></Title3>
             </TouchableOpacity>
         </GeneralContainer>
     )

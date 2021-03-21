@@ -16,7 +16,7 @@ export default function Home() {
     return (
         <View style={{paddingLeft: 10, paddingRight: 10, paddingBottom: 60}}>
             <ScrollView showsVerticalScrollIndicator={false} >
-                <Title title={["Bienvenido, ", "denuevo" + " 👋"]}></Title>
+                <Title title={["Bienvenido, ", "de nuevo" + " 👋"]}></Title>
                 <ProgressSnippet></ProgressSnippet>
                 <ArticleList></ArticleList>
             </ScrollView>

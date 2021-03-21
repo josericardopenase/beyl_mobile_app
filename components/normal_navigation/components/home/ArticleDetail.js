@@ -21,7 +21,7 @@ export default function ArticleDetail(props) {
                 style={styles.image}
                 source={{uri: obj.image}}>
                 </Image>
-                <Title3>obj.texto</Title3>
+                <Title5 color="white">{obj.texto.replace(/<\/?[^>]+(>|$)/g, "")}</Title5>
                     
             </ScrollView>
         </GeneralContainer>
@@ -30,12 +30,16 @@ export default function ArticleDetail(props) {
 
 const styles = StyleSheet.create({
 
+
     container: {
         padding: 15,
         backgroundColor: PalleteColors.background,
         borderRadius: 10,
         marginTop: 20
 
+    },
+    body : {
+        color: "white",
     },
     image: {
         marginTop: 20,

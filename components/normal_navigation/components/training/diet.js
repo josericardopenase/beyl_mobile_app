@@ -29,6 +29,16 @@ export default function Diet() {
     const responseListener = useRef()
 
 
+    const reloadDiet = () => {
+
+        if(diet.loading | dayData.loading)
+            return
+
+        diet.request()
+        if(day != undefined){
+            dayData.request(day) 
+        }
+    }
 
 
     useEffect(() =>
@@ -69,8 +79,8 @@ export default function Diet() {
     }
 
     if(diet.error || day === undefined ){
-        if (diet.error) return <ErrorApi error={diet.data.detail} />;
-        return <ErrorApi error={"Tu dieta no esta disponible espera que tu entrenador la termine"}></ErrorApi>
+        if (diet.error) return <ErrorApi loading={diet.loading | dayData.loading} onPress={reloadDiet} error={diet.data.detail} />;
+        return <ErrorApi loading={diet.loading | dayData.loading} onPress={reloadDiet} error={"Tu dieta no está disponible espera que tu entrenador la termine"}></ErrorApi>
     }
 
     if(diet.loading | dayData.loading){

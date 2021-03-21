@@ -3,7 +3,7 @@
     "name": "Beylapp",
     "slug": "beylapp",
     "scheme": "beyl",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -32,7 +32,8 @@
       "permissions" : ["CAMERA", "CAMERA_ROLL"],
       "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
-      "package": "com.beyl.beyl"
+      "package": "com.beyl.beyl",
+      "versionCode" : 2
     },
     "notification": {
       "icon": "./assets/beyl.png",

@@ -31,6 +31,15 @@ export default function Rutine() {
 
 	const notificationListener = useRef();
 
+	const reloadRutine = () => {
+
+		rutine.request();
+
+		if (day != undefined) {
+			dayData.request(day);
+		}
+	}
+
 	useEffect(() => {
 		notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
 
@@ -73,8 +82,8 @@ export default function Rutine() {
 
 
 	if (rutine.error || day === undefined) {
-		if (rutine.error) return <ErrorApi error={rutine.data.detail} />;
-		else return <ErrorApi error={'Tu rutina no esta disponible, espera que tu entrenador la termine'} />;
+		if (rutine.error) return <ErrorApi loading={rutine.loading || dayData.loading} onPress={() => reloadRutine()} error={rutine.data.detail} />;
+		else return <ErrorApi loading={rutine.loading || dayData.loading} onPress={() => reloadRutine()}  error={'Tu rutina no está disponible, espera que tu entrenador la termine'} />;
 	}
 
 	if (!rutine.loading && !dayData.loading) {

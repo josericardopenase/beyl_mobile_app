@@ -18,7 +18,7 @@ export default function Chat() {
 
                     <Image source={require('../../../../assets/NotFoundImg.png')} style={{width: '70%', resizeMode: "contain", height: 220, marginBottom: 20}}/> 
                     <Title2><Bold>Vaya...</Bold></Title2> 
-                    <Title3 style={{marginBottom: 46}} textAlign="center">El chat con tu entrenador no estara disponible por ahora</Title3>
+                    <Title3 style={{marginBottom: 46}} textAlign="center">El chat con tu entrenador no está disponible por ahora</Title3>
 
                 </View>
 

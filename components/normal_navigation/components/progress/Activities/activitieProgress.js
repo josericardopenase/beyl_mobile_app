@@ -61,7 +61,7 @@ export default function ActivitieProgress(props) {
         </View>
 
     <GeneralContainer>
-        <Title5>¿Como te ha ido?</Title5>
+        <Title5>¿Cómo te ha ido?</Title5>
         <Form>
 
                 <Formik
@@ -73,7 +73,7 @@ export default function ActivitieProgress(props) {
                                 <Form style={{marginTop: 20}}>
 
                                     <FormDateTimePicker name="date" placeholder = "Fecha" mode="date" first></FormDateTimePicker>
-                                    <FormDateTimePicker name="time" placeholder ="Time" mode = "time"></FormDateTimePicker>
+                                    <FormDateTimePicker name="time" placeholder ="Duración" mode = "time"></FormDateTimePicker>
                                     <TitleError error={"Ha ocurrido un error"} visible={post_general_history.error}></TitleError>
                                     <FormButton placeholder="Registrar" loading={loading} onPress={handleSubmit}></FormButton>
                                 </Form>
