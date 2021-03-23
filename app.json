@@ -3,7 +3,7 @@
     "name": "Beylapp",
     "slug": "beylapp",
     "scheme": "beyl",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -33,7 +33,7 @@
       "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
       "package": "com.beyl.beyl",
-      "versionCode" : 2
+      "versionCode" : 3
     },
     "notification": {
       "icon": "./assets/beyl.png",
