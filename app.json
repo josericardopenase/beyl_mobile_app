@@ -18,7 +18,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.beyl.beyl",
+      "buildNumber" : "1.0.0"
+
     },
     "web": {
       "favicon": "./assets/favicon.png"

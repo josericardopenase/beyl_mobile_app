@@ -19,6 +19,7 @@ export default function Rutine() {
 	const rutine = useApiCallback(apiClientRutine.getRutine, (data) => {
 		if (data.rutine_days !== undefined) if (data.rutine_days.length > 0) if(data.rutine_days[0] !== undefined) return setDay(data.rutine_days[0].id);
 
+		setRefreshing(false);
 		setDay(undefined);
 	});
 
@@ -33,6 +34,10 @@ export default function Rutine() {
 
 	const reloadRutine = () => {
 
+		if(refreshing)
+			return;
+
+		setRefreshing(true);
 		rutine.request();
 
 		if (day != undefined) {
@@ -82,8 +87,8 @@ export default function Rutine() {
 
 
 	if (rutine.error || day === undefined) {
-		if (rutine.error) return <ErrorApi loading={rutine.loading || dayData.loading} onPress={() => reloadRutine()} error={rutine.data.detail} />;
-		else return <ErrorApi loading={rutine.loading || dayData.loading} onPress={() => reloadRutine()}  error={'Tu rutina no está disponible, espera que tu entrenador la termine'} />;
+		if (rutine.error) return <ErrorApi loading={refreshing} onPress={() => reloadRutine()} error={rutine.data.detail} />;
+		else return <ErrorApi loading={refreshing} onPress={() => reloadRutine()}  error={'Tu rutina no está disponible, espera que tu entrenador la termine'} />;
 	}
 
 	if (!rutine.loading && !dayData.loading) {

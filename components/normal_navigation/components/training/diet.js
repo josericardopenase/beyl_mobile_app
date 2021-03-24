@@ -18,6 +18,7 @@ export default function Diet() {
         
 		if (data.diet_days !== undefined) if (data.diet_days.length > 0) if(data.diet_days[0] !== undefined) return setDay(data.diet_days[0].id);
 
+        setRefreshing(false);
         setDay(undefined)  
     
     })
@@ -31,13 +32,17 @@ export default function Diet() {
 
     const reloadDiet = () => {
 
-        if(diet.loading | dayData.loading)
+        if(refreshing)
             return
+
+        setRefreshing(true);
 
         diet.request()
         if(day != undefined){
             dayData.request(day) 
         }
+
+
     }
 
 
@@ -79,8 +84,8 @@ export default function Diet() {
     }
 
     if(diet.error || day === undefined ){
-        if (diet.error) return <ErrorApi loading={diet.loading | dayData.loading} onPress={reloadDiet} error={diet.data.detail} />;
-        return <ErrorApi loading={diet.loading | dayData.loading} onPress={reloadDiet} error={"Tu dieta no está disponible espera que tu entrenador la termine"}></ErrorApi>
+        if (diet.error) return <ErrorApi loading={refreshing} onPress={reloadDiet} error={diet.data.detail} />;
+        return <ErrorApi loading={refreshing} onPress={reloadDiet} error={"Tu dieta no está disponible espera que tu entrenador la termine"}></ErrorApi>
     }
 
     if(diet.loading | dayData.loading){
