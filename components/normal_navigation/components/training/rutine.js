@@ -16,7 +16,12 @@ import * as Notifications from 'expo-notifications';
 
 export default function Rutine() {
 
+
+	const [ day, setDay ] = useState();
+	const [ refreshing, setRefreshing ] = useState(false);
+
 	const rutine = useApiCallback(apiClientRutine.getRutine, (data) => {
+
 		if (data.rutine_days !== undefined) if (data.rutine_days.length > 0) if(data.rutine_days[0] !== undefined) return setDay(data.rutine_days[0].id);
 
 		setRefreshing(false);
@@ -24,12 +29,9 @@ export default function Rutine() {
 	});
 
 	const dayData = useApiCallback(apiClientRutine.getRutineDay, (data) => {
+
 		setRefreshing(false)
 	});
-
-	const [ day, setDay ] = useState();
-	const [ refreshing, setRefreshing ] = useState(false);
-
 	const notificationListener = useRef();
 
 	const reloadRutine = () => {
@@ -70,8 +72,10 @@ export default function Rutine() {
 
 	useEffect(
 		() => {
+
 			if (day != undefined) {
 				dayData.request(day);
+
 			}
 		},
 		[ day ]
@@ -86,7 +90,7 @@ export default function Rutine() {
 	};
 
 
-	if (rutine.error || day === undefined) {
+	if (rutine.error || day === undefined || !dayData.data.rutine_groups) {
 		if (rutine.error) return <ErrorApi loading={refreshing} onPress={() => reloadRutine()} error={rutine.data.detail} />;
 		else return <ErrorApi loading={refreshing} onPress={() => reloadRutine()}  error={'Tu rutina no está disponible, espera que tu entrenador la termine'} />;
 	}

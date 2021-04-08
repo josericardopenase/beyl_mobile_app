@@ -28,6 +28,7 @@ export default function ExcersiseDetail(props) {
 
     useEffect(() => {
         excersise.request(id);
+        console.log(excersise.data)
     }, [])
 
     if(excersise.loading){
@@ -42,11 +43,19 @@ export default function ExcersiseDetail(props) {
 
                 <GeneralContainer>
 
+                    {
+
+                        excersise.data.video ?
+
                      <View style={{position: "absolute", display: "flex", marginTop: -50, alignSelf: "center"}}>
                         <TouchableOpacity style={{width: 80, height: 80, backgroundColor: PalleteColors.mainColor, alignSelf: "center", justifyContent: "center",  borderRadius: 20}} onPress={() => navigation.navigate('ExcersiseVideo', {'video' : excersise.data.video})}>
                             <Ionicons name={"ios-play"} size={40} color="white" style={{alignSelf: "center"}}></Ionicons>
                         </TouchableOpacity>
                     </View>
+                    :
+                    null
+                    
+                    }
 
                     <ExcersiseName name={excersise.data.name}></ExcersiseName>
 

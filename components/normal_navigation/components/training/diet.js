@@ -83,7 +83,7 @@ export default function Diet() {
         }
     }
 
-    if(diet.error || day === undefined ){
+    if(diet.error || day === undefined || !dayData.data.diet_groups ){
         if (diet.error) return <ErrorApi loading={refreshing} onPress={reloadDiet} error={diet.data.detail} />;
         return <ErrorApi loading={refreshing} onPress={reloadDiet} error={"Tu dieta no está disponible espera que tu entrenador la termine"}></ErrorApi>
     }
