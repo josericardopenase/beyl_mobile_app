@@ -69,7 +69,7 @@ export default function Diet() {
     },[])
 
     useEffect(() =>{
-        diet.request()
+
         if(day != undefined){
             dayData.request(day) 
         }

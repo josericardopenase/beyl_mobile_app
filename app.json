@@ -3,7 +3,7 @@
     "name": "Beylapp",
     "slug": "beylapp",
     "scheme": "beyl",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -20,8 +20,8 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.beyl.beyl",
-      "buildNumber" : "1.0.0"
-
+      "buildNumber" : "1.0.2",
+      "icon": "./assets/icon.png"
     },
     "web": {
       "favicon": "./assets/favicon.png"
